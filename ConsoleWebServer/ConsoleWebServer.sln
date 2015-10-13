@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleWebServer.CLI", "ConsoleWebServer.CLI\ConsoleWebServer.CLI.csproj", "{3DFCCDC6-8EE7-4343-8E9D-F083ADBD9884}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleWebServer.Application", "ConsoleWebServer.Application\ConsoleWebServer.Application.csproj", "{3DFCCDC6-8EE7-4343-8E9D-F083ADBD9884}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleWebServer.Framework", "ConsoleWebServer.Framework\ConsoleWebServer.Framework.csproj", "{8E420F13-35C3-4ED7-92FB-2B4A469B2BE4}"
 EndProject

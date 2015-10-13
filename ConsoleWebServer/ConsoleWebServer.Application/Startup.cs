@@ -29,17 +29,9 @@
         {
             var requestParser = new RequestParser();
             var request = requestParser.Parse(requestAsString);
-            Console.WriteLine(request.Method);
-            Console.WriteLine(request.ProtocolVersion);
-            Console.WriteLine(request.Route.ControllerName);
-            Console.WriteLine(request.Route.ActionName);
-            Console.WriteLine(request.Route.Id);
-            foreach (var key in request.Headers.Keys)
-            {
-                Console.WriteLine("{0}: {1}", key, string.Join("; ", request.Headers[key]));
-            }
+            var controllerFactory = new ControllerFactory();
+            var controller = controllerFactory.CreateController(request);
 
-            Console.WriteLine();
         }
     }
 }
