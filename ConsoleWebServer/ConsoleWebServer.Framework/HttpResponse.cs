@@ -8,7 +8,7 @@
     {
         private const string ServerEngineName = "ConsoleWebServer";
 
-        private const string DefaultContentType = "text/html; charset=utf-8";
+        private const string DefaultContentType = "text/plain; charset=utf-8";
 
         public HttpResponse(
             Version httpVersion,

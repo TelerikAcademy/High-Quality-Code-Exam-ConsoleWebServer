@@ -1,6 +1,5 @@
 ﻿namespace ConsoleWebServer.Framework
 {
-    using System;
     using System.IO;
 
     public class RequestParser
@@ -25,9 +24,8 @@
             var firstRequestLineParts = firstRequestLine.Split(' ');
             if (firstRequestLineParts.Length != 3)
             {
-                throw new ArgumentException(
-                    "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]",
-                    "firstRequestLine");
+                throw new ParserException(
+                    "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
             }
             var requestObject = new HttpRequest(
                 firstRequestLineParts[0],

@@ -5,6 +5,7 @@
     using System.Text;
 
     using ConsoleWebServer.Framework;
+    using ConsoleWebServer.Framework.Handlers;
 
     public static class Startup
     {
@@ -17,7 +18,8 @@
                 var inputLine = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(inputLine))
                 {
-                    HandleRequest(requestBuilder.ToString());
+                    var response = GetResponse(requestBuilder.ToString());
+                    Console.WriteLine(response);
                     requestBuilder.Clear();
                     continue;
                 }
@@ -26,30 +28,26 @@
             }
         }
 
-        private static void HandleRequest(string requestAsString)
+        private static HttpResponse GetResponse(string requestAsString)
         {
-            var requestParser = new RequestParser();
-            var request = requestParser.Parse(requestAsString);
+            var fileHandler = new StaticFileHandler();
+            var controllerHandler = new ControllerHandler();
 
-            HttpResponse response;
+            fileHandler.SetSuccessor(controllerHandler);
+
+            HttpRequest request;
             try
             {
-                var controllerFactory = new ControllerFactory();
-                var controller = controllerFactory.CreateController(request);
-                var actionInvoker = new ActionInvoker();
-                var actionResult = actionInvoker.InvokeAction(controller, request.Action);
-                response = actionResult.GetResponse();
+                var requestParser = new RequestParser();
+                request = requestParser.Parse(requestAsString);
             }
-            catch (HttpNotFoundException exception)
+            catch (Exception ex)
             {
-                response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, exception.Message);
-            }
-            catch (Exception exception)
-            {
-                response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.InternalServerError, exception.Message);
+                return new HttpResponse(new Version(1, 1), HttpStatusCode.BadRequest, ex.Message);
             }
 
-            Console.WriteLine(response.ToString());
+            var response = fileHandler.HandleRequest(request);
+            return response;
         }
     }
 }

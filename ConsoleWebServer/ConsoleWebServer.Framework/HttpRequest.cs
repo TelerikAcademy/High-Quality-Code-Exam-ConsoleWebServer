@@ -7,9 +7,12 @@
         public HttpRequest(string method, string uri, string httpVersion)
             : base(httpVersion)
         {
+            this.Uri = uri;
             this.Method = method;
             this.Action = new ActionDescriptor(uri);
         }
+
+        public string Uri { get; private set; }
 
         public string Method { get; private set; }
 

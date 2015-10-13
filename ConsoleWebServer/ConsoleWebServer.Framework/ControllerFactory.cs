@@ -9,7 +9,7 @@
         public Controller CreateController(HttpRequest request)
         {
             var controllerClassName = request.Action.ControllerName + "Controller";
-            var type = Assembly.GetCallingAssembly().GetTypes().FirstOrDefault(x => x.Name == controllerClassName);
+            var type = Assembly.GetEntryAssembly().GetTypes().FirstOrDefault(x => x.Name == controllerClassName);
             if (type == null || !typeof(Controller).IsAssignableFrom(type))
             {
                 throw new HttpNotFoundException(
