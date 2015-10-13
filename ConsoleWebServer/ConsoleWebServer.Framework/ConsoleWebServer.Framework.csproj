@@ -40,9 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvoker.cs" />
+    <Compile Include="ActionResults\ViewActionResult.cs" />
     <Compile Include="ControllerFactory.cs" />
+    <Compile Include="HttpMessage.cs" />
+    <Compile Include="HttpNotFoundException.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="HttpResponse.cs" />
+    <Compile Include="ActionResults\IActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestParser.cs" />
     <Compile Include="ActionDescriptor.cs" />

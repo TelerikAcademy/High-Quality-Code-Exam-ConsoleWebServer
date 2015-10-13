@@ -1,36 +1,27 @@
 ﻿namespace ConsoleWebServer.Framework
 {
-    using System;
-    using System.Collections.Generic;
+    using System.Text;
 
-    public class HttpRequest
+    public class HttpRequest : HttpMessage
     {
-        private const string HttpVersionPrefix = "HTTP/";
-
         public HttpRequest(string method, string uri, string httpVersion)
+            : base(httpVersion)
         {
             this.Method = method;
             this.Action = new ActionDescriptor(uri);
-            this.ProtocolVersion = Version.Parse(httpVersion.Replace(HttpVersionPrefix, string.Empty));
-            this.Headers = new Dictionary<string, ICollection<string>>();
         }
 
         public string Method { get; private set; }
 
         public ActionDescriptor Action { get; private set; }
 
-        public Version ProtocolVersion { get; private set; }
-
-        public IDictionary<string, ICollection<string>> Headers { get; private set; }
-
-        public void AddHeader(string name, string value)
+        public override string ToString()
         {
-            if (!this.Headers.ContainsKey(name))
-            {
-                this.Headers.Add(name, new HashSet<string>());
-            }
-            
-            this.Headers[name].Add(value);
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(
+                string.Format("{0} {1} {2}{3}", this.Method, this.Action, HttpVersionPrefix, this.ProtocolVersion));
+            stringBuilder.AppendLine(base.ToString().Trim());
+            return stringBuilder.ToString();
         }
     }
 }

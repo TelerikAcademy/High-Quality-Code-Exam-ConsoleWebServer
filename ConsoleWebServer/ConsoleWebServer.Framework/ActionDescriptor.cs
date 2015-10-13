@@ -26,5 +26,10 @@
         public string ActionName { get; private set; }
 
         public string Parameter { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("/{0}/{1}/{2}", this.ControllerName, this.ActionName, this.Parameter);
+        }
     }
 }

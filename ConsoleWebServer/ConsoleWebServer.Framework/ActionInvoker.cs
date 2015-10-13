@@ -1,7 +1,8 @@
 ﻿namespace ConsoleWebServer.Framework
 {
-    using System;
     using System.Linq;
+
+    using ConsoleWebServer.Framework.ActionResults;
 
     public class ActionInvoker
     {
@@ -17,7 +18,7 @@
                         && x.ReturnType == typeof(IActionResult));
             if (methodWithIntParameter == null)
             {
-                throw new Exception(
+                throw new HttpNotFoundException(
                     string.Format(
                         "Expected method with signature IActionResult {0}(string) in class {1}",
                         actionDescriptor.ActionName,

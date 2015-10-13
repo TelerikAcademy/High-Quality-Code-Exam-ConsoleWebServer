@@ -12,7 +12,8 @@
             var type = Assembly.GetCallingAssembly().GetTypes().FirstOrDefault(x => x.Name == controllerClassName);
             if (type == null || !typeof(Controller).IsAssignableFrom(type))
             {
-                return null;
+                throw new HttpNotFoundException(
+                    string.Format("Controller with name {0} not found!", controllerClassName));
             }
 
             var instance = (Controller)Activator.CreateInstance(type);
