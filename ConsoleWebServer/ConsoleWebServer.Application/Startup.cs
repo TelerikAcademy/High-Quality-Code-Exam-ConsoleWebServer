@@ -31,7 +31,8 @@
             var request = requestParser.Parse(requestAsString);
             var controllerFactory = new ControllerFactory();
             var controller = controllerFactory.CreateController(request);
-
+            var actionInvoker = new ActionInvoker();
+            actionInvoker.InvokeAction(controller, request.Action);
         }
     }
 }

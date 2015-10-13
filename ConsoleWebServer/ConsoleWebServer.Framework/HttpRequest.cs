@@ -10,14 +10,14 @@
         public HttpRequest(string method, string uri, string httpVersion)
         {
             this.Method = method;
-            this.Route = new RouteDescriptor(uri);
+            this.Action = new ActionDescriptor(uri);
             this.ProtocolVersion = Version.Parse(httpVersion.Replace(HttpVersionPrefix, string.Empty));
             this.Headers = new Dictionary<string, ICollection<string>>();
         }
 
         public string Method { get; private set; }
 
-        public RouteDescriptor Route { get; private set; }
+        public ActionDescriptor Action { get; private set; }
 
         public Version ProtocolVersion { get; private set; }
 

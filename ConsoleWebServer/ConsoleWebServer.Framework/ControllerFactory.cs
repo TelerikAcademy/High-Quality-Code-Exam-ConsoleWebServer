@@ -8,7 +8,7 @@
     {
         public Controller CreateController(HttpRequest request)
         {
-            var controllerClassName = request.Route.ControllerName + "Controller";
+            var controllerClassName = request.Action.ControllerName + "Controller";
             var type = Assembly.GetCallingAssembly().GetTypes().FirstOrDefault(x => x.Name == controllerClassName);
             if (type == null || !typeof(Controller).IsAssignableFrom(type))
             {

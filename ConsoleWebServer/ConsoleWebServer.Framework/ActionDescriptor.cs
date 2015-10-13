@@ -2,13 +2,13 @@
 {
     using System;
 
-    public class RouteDescriptor
+    public class ActionDescriptor
     {
         public const string DefaultControllerName = "Home";
 
         public const string DefaultActionName = "Index";
 
-        public RouteDescriptor(string uri)
+        public ActionDescriptor(string uri)
         {
             uri = uri ?? string.Empty;
 
@@ -18,21 +18,13 @@
 
             this.ActionName = uriParts.Length > 1 ? uriParts[1] : DefaultActionName;
 
-            int id;
-            if (uriParts.Length > 2 && int.TryParse(uriParts[2], out id))
-            {
-                this.Id = id;
-            }
-            else
-            {
-                this.Id = null;
-            }
+            this.Parameter = uriParts.Length > 2 ? uriParts[2] : string.Empty;
         }
 
         public string ControllerName { get; private set; }
 
         public string ActionName { get; private set; }
 
-        public int? Id { get; private set; }
+        public string Parameter { get; private set; }
     }
 }
