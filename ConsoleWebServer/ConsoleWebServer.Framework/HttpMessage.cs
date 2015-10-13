@@ -10,7 +10,7 @@
 
         protected HttpMessage(string httpVersion)
         {
-            this.ProtocolVersion = Version.Parse(httpVersion.Replace(HttpVersionPrefix, string.Empty));
+            this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
             this.Headers = new SortedDictionary<string, ICollection<string>>();
         }
 

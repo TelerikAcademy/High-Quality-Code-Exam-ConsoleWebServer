@@ -30,9 +30,13 @@
 
         private static HttpResponse GetResponse(string requestAsString)
         {
+            var headHandler = new HeadHandler();
+            var optionsHandler = new OptionsHandler();
             var fileHandler = new StaticFileHandler();
             var controllerHandler = new ControllerHandler();
 
+            headHandler.SetSuccessor(optionsHandler);
+            optionsHandler.SetSuccessor(fileHandler);
             fileHandler.SetSuccessor(controllerHandler);
 
             HttpRequest request;
@@ -46,7 +50,7 @@
                 return new HttpResponse(new Version(1, 1), HttpStatusCode.BadRequest, ex.Message);
             }
 
-            var response = fileHandler.HandleRequest(request);
+            var response = headHandler.HandleRequest(request);
             return response;
         }
     }

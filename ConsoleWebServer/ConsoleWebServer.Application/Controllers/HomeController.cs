@@ -9,5 +9,10 @@
         {
             return this.View("view", new { });
         }
+
+        public IActionResult Contact(string str)
+        {
+            return this.Json(new { });
+        }
     }
 }

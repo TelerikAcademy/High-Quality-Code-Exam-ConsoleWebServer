@@ -44,6 +44,8 @@
     <Compile Include="ControllerFactory.cs" />
     <Compile Include="Handlers\ControllerHandler.cs" />
     <Compile Include="Handlers\Handler.cs" />
+    <Compile Include="Handlers\HeadHandler.cs" />
+    <Compile Include="Handlers\OptionsHandler.cs" />
     <Compile Include="Handlers\StaticFileHandler.cs" />
     <Compile Include="HttpMessage.cs" />
     <Compile Include="HttpNotFoundException.cs" />

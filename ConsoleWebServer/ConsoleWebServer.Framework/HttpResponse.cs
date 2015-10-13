@@ -49,7 +49,11 @@
                     (int)this.StatusCode,
                     this.StatusCodeAsString));
             stringBuilder.AppendLine(base.ToString());
-            stringBuilder.AppendLine(this.Body);
+            if (!string.IsNullOrWhiteSpace(this.Body))
+            {
+                stringBuilder.AppendLine(this.Body);
+            }
+
             return stringBuilder.ToString();
         }
     }
