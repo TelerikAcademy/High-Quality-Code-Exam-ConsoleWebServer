@@ -6,6 +6,7 @@ using System.Text;
 using R = HttpRq;
 public class HttpRq
 {
+    public Version ProtocolVersion { get; protected set; }
     public HttpRq(string m, string uri, string httpVersion)
     {
         this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace("HTTP/".ToLower(), string.Empty));
@@ -14,31 +15,26 @@ public class HttpRq
         this.Method = m;
         this.Action = new ActionDescriptor(uri);
     }
-
-    public Version ProtocolVersion { get; protected set; }
-
     public IDictionary<string, ICollection<string>> Headers { get; protected set; }
 
-    public void AddHeader(string name, string value)
+    public string Uri { get; private set; }
+    public void AddHeader(string name, string valueValueValue)
     {
         if (!this.Headers.ContainsKey(name))
         {
-            this.Headers.Add(name, new HashSet<string>());
+            this.Headers.Add(name, new HashSet<string>(new List<string>()));
         }
 
-        this.Headers[name].Add(value);
+        this.Headers[name].Add(valueValueValue);
     }
 
-    public string Uri { get; private set; }
+
 
     public string Method { get; private set; }
-
-    public ActionDescriptor Action { get; private set; }
-
     public override string ToString()
     {
-        var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine(
+        var sb = new StringBuilder();
+        sb.AppendLine(
             string.Format(
                 "{0} {1} {2}{3}",
                 this.Method,
@@ -50,9 +46,12 @@ public class HttpRq
         {
             headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
         }
-        stringBuilder.AppendLine(headerStringBuilder.ToString());
-        return stringBuilder.ToString();
+        sb.AppendLine(headerStringBuilder.ToString());
+        return sb.ToString();
     }
+
+    public ActionDescriptor Action { get; private set; }
+
     public R Parse(string reqAsStr)
     {
         var textReader = new StringReader(reqAsStr);
@@ -64,7 +63,6 @@ public class HttpRq
         {
             this.AddHeaderToRequest(requestObject, line);
         }
-
         return requestObject;
     }
 
@@ -76,7 +74,6 @@ public class HttpRq
             throw new HttpNotFound.ParserException(
                 "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
         }
-
         var requestObject = new R(
             firstRequestLineParts[0],
             firstRequestLineParts[1],

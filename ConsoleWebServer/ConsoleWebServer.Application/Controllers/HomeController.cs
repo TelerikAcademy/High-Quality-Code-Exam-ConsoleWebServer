@@ -1,5 +1,4 @@
-﻿public class HomeController : Controller
-{
+﻿public class HomeController : Controller{
     public HomeController(HttpRq request):base(request){}
     public IActionResult Index(string param){
         return this.Content("Home page :)");

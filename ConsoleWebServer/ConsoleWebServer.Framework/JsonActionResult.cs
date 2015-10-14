@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;using System.Text;
+﻿using System;
+using System.Collections.Generic;using System.Text;
 using System.Net;
 
 using Newtonsoft.Json;
@@ -37,10 +38,11 @@ public class JsonActionResultWithCors : JsonActionResult{
     }
 }
 public class JsonActionResultWithoutCaching : JsonActionResult{
-    public JsonActionResultWithoutCaching(HttpRq request, object model)
-        : base(request, model)
+    public JsonActionResultWithoutCaching(HttpRq r, object model)
+        : base(r, model)
     {
         this.ResponseHeaders.Add(new KeyValuePair<string, string>("Cache-Control", "private, max-age=0, no-cache"));
+        throw new Exception();
     }
 }
 public class JsonActionResultWithCorsWithoutCaching : JsonActionResult{

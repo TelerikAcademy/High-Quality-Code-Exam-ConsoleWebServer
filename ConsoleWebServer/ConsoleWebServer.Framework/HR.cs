@@ -30,8 +30,7 @@ public class HttpResponse
 
     public void AddHeader(string name, string value)
     {
-        if (!Headers.ContainsKey(name))
-        {
+        if (!Headers.ContainsKey(name)){
             Headers.Add(name, new HashSet<string>());
         }
         Headers[name].Add(value);
@@ -50,16 +49,16 @@ public class HttpResponse
             string.Format(
                 "{0}{1} {2} {3}",
                 "HTTP/",
-                this.ProtocolVersion,
-                (int)this.StatusCode,
-                this.StatusCodeAsString));
+                ProtocolVersion,
+                (int)StatusCode,
+                StatusCodeAsString));
         var headerStringBuilder = new StringBuilder();
         foreach (var key in Headers.Keys)
         {
             headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", Headers[key])));
         }
         stringBuilder.AppendLine(headerStringBuilder.ToString());
-        if (!string.IsNullOrWhiteSpace(this.Body))
+        if (!string.IsNullOrWhiteSpace(Body))
         {
             stringBuilder.AppendLine(Body);
         }

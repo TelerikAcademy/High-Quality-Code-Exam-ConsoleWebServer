@@ -46,7 +46,6 @@ public class ResponseProvider
             {
                 response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.InternalServerError, exception.Message);
             }
-
             return response;
         }
         else
@@ -63,13 +62,11 @@ public class ResponseProvider
                 .GetTypes()
                 .FirstOrDefault(
                     x => x.Name.ToLower() == controllerClassName.ToLower() && typeof(Controller).IsAssignableFrom(x));
-
         if (type == null)
         {
             throw new HttpNotFound(
                 string.Format("Controller with name {0} not found!", controllerClassName));
         }
-
         var instance = (Controller)Activator.CreateInstance(type, request);
         return instance;
     }
@@ -86,7 +83,6 @@ public class ResponseProvider
         {
             return new HttpResponse(new Version(1, 1), HttpStatusCode.BadRequest, ex.Message);
         }
-
         var response = this.Process(request);
         return response;
     }
