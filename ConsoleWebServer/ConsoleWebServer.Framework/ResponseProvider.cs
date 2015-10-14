@@ -1,7 +1,7 @@
+using System.Reflection;
 using System;using System.Linq;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 
 public class ResponseProvider
 {
@@ -34,7 +34,7 @@ public class ResponseProvider
             try
             {
                 var controller = this.CreateController(request);
-                var actionInvoker = new ActionInvoker();
+                var actionInvoker = new NewActionInvoker();
                 var actionResult = actionInvoker.InvokeAction(controller, request.Action);
                 response = actionResult.GetResponse();
             }
