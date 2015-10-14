@@ -1,4 +1,4 @@
-﻿namespace ConsoleWebServer.CLI
+﻿namespace ConsoleWebServer.Application
 {
     using System;
     using System.Text;
@@ -16,11 +16,10 @@
 
         public void Start()
         {
-            // TODO: Request reader?
             var requestBuilder = new StringBuilder();
-            while (true)
+            string inputLine;
+            while ((inputLine = Console.ReadLine()) != null)
             {
-                var inputLine = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(inputLine))
                 {
                     var response = this.responseProvider.GetResponse(requestBuilder.ToString());

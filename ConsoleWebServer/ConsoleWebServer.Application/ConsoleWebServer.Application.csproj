@@ -7,8 +7,8 @@
     <ProjectGuid>{3DFCCDC6-8EE7-4343-8E9D-F083ADBD9884}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleWebServer.CLI</RootNamespace>
-    <AssemblyName>ConsoleWebServer.CLI</AssemblyName>
+    <RootNamespace>ConsoleWebServer.Application</RootNamespace>
+    <AssemblyName>ConsoleWebServer.Application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

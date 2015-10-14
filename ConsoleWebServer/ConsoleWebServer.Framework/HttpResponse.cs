@@ -19,9 +19,7 @@
         {
             this.Body = body;
             this.StatusCode = statusCode;
-            this.AddHeader("X-Powered-By", ServerEngineName);
             this.AddHeader("Server", ServerEngineName);
-            this.AddHeader("Date", DateTime.Now.ToString("R"));
             this.AddHeader("Content-Length", body.Length.ToString());
             this.AddHeader("Content-Type", contentType);
         }

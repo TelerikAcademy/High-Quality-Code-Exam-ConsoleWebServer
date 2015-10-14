@@ -1,4 +1,4 @@
-﻿namespace ConsoleWebServer.CLI
+﻿namespace ConsoleWebServer.Application
 {
     using ConsoleWebServer.Framework;
     using ConsoleWebServer.Framework.Handlers;

@@ -1,6 +1,7 @@
-﻿namespace ConsoleWebServer.Framework
+﻿namespace ConsoleWebServer.Framework.Handlers
 {
     using System.Linq;
+    using System.Reflection;
 
     using ConsoleWebServer.Framework.ActionResults;
 
@@ -25,9 +26,16 @@
                         actionDescriptor.ControllerName));
             }
 
-            var actionResult =
-                (IActionResult)methodWithIntParameter.Invoke(controller, new object[] { actionDescriptor.Parameter });
-            return actionResult;
+            try
+            {
+                var actionResult =
+                    (IActionResult)methodWithIntParameter.Invoke(controller, new object[] { actionDescriptor.Parameter });
+                return actionResult;
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw ex.InnerException;
+            }
         }
     }
 }

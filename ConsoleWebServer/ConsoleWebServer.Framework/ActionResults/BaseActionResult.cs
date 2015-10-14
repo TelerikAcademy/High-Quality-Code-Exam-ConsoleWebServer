@@ -17,7 +17,7 @@
 
         public HttpResponse GetResponse()
         {
-            var response = new HttpResponse(this.Request.ProtocolVersion, this.GetStatusCode(), this.GetContentType());
+            var response = new HttpResponse(this.Request.ProtocolVersion, this.GetStatusCode(), this.GetContent(), this.GetContentType());
             foreach (var responseHeader in this.ResponseHeaders)
             {
                 response.AddHeader(responseHeader.Key, responseHeader.Value);

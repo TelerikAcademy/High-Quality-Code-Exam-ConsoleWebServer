@@ -17,14 +17,13 @@
             {
                 return this.Handle(request);
             }
-            else if (this.Successor != null)
+            
+            if (this.Successor != null)
             {
                 return this.Successor.HandleRequest(request);
             }
-            else
-            {
-                return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotImplemented, "Request cannot be handled.");
-            }
+
+            return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotImplemented, "Request cannot be handled.");
         }
 
         protected abstract bool CanHandle(HttpRequest request);

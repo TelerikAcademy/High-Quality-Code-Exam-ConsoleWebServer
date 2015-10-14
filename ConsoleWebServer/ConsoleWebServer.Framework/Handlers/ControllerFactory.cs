@@ -1,4 +1,4 @@
-﻿namespace ConsoleWebServer.Framework
+﻿namespace ConsoleWebServer.Framework.Handlers
 {
     using System;
     using System.Linq;
@@ -9,10 +9,11 @@
         public Controller CreateController(HttpRequest request)
         {
             var controllerClassName = request.Action.ControllerName + "Controller";
-            var type = Assembly
-                .GetEntryAssembly()
-                .GetTypes()
-                .FirstOrDefault(x => x.Name.ToLower() == controllerClassName.ToLower() && typeof(Controller).IsAssignableFrom(x));
+            var type =
+                Assembly.GetEntryAssembly()
+                    .GetTypes()
+                    .FirstOrDefault(
+                        x => x.Name.ToLower() == controllerClassName.ToLower() && typeof(Controller).IsAssignableFrom(x));
             
             if (type == null)
             {
@@ -20,9 +21,7 @@
                     string.Format("Controller with name {0} not found!", controllerClassName));
             }
 
-            var instance = (Controller)Activator.CreateInstance(type);
-            instance.Request = request;
-
+            var instance = (Controller)Activator.CreateInstance(type, request);
             return instance;
         }
     }
