@@ -3,6 +3,7 @@
     using ConsoleWebServer.Framework;
     using ConsoleWebServer.Framework.Handlers;
 
+    // TODO: Describe patterns, SOLID, bugs and bottleneck in Documentation.txt
     public static class Startup
     {
         public static void Main()
