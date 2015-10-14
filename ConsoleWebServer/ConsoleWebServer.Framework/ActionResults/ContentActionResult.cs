@@ -5,7 +5,7 @@
         private readonly object model;
 
         public ContentActionResult(HttpRequest request, object model)
-            : base (request)
+            : base(request)
         {
             this.model = model;
         }

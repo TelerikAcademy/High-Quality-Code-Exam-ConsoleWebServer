@@ -4,16 +4,12 @@
 
     public abstract class Handler
     {
-        protected Handler Successor;
+        protected Handler Successor { get; private set; }
 
         public void SetSuccessor(Handler successor)
         {
             this.Successor = successor;
         }
-
-        protected abstract bool CanHandle(HttpRequest request);
-
-        protected abstract HttpResponse Handle(HttpRequest request);
 
         public HttpResponse HandleRequest(HttpRequest request)
         {
@@ -30,5 +26,9 @@
                 return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotImplemented, "Request cannot be handled.");
             }
         }
+
+        protected abstract bool CanHandle(HttpRequest request);
+
+        protected abstract HttpResponse Handle(HttpRequest request);
     }
 }

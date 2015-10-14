@@ -15,6 +15,17 @@
 
         protected List<KeyValuePair<string, string>> ResponseHeaders { get; private set; }
 
+        public HttpResponse GetResponse()
+        {
+            var response = new HttpResponse(this.Request.ProtocolVersion, this.GetStatusCode(), this.GetContentType());
+            foreach (var responseHeader in this.ResponseHeaders)
+            {
+                response.AddHeader(responseHeader.Key, responseHeader.Value);
+            }
+
+            return response;
+        }
+
         protected virtual HttpStatusCode GetStatusCode()
         {
             return HttpStatusCode.OK;
@@ -28,17 +39,6 @@
         protected virtual string GetContentType()
         {
             return HttpResponse.DefaultContentType;
-        }
-
-        public HttpResponse GetResponse()
-        {
-            var response = new HttpResponse(this.Request.ProtocolVersion, this.GetStatusCode(), this.GetContentType());
-            foreach (var responseHeader in this.ResponseHeaders)
-            {
-                response.AddHeader(responseHeader.Key, responseHeader.Value);
-            }
-
-            return response;
         }
     }
 }

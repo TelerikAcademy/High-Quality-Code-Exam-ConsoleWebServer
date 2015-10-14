@@ -22,7 +22,12 @@
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(
-                string.Format("{0} {1} {2}{3}", this.Method, this.Action, HttpVersionPrefix, this.ProtocolVersion));
+                string.Format(
+                    "{0} {1} {2}{3}",
+                    this.Method,
+                    this.Action,
+                    HttpMessage.HttpVersionPrefix,
+                    this.ProtocolVersion));
             stringBuilder.AppendLine(base.ToString().Trim());
             return stringBuilder.ToString();
         }

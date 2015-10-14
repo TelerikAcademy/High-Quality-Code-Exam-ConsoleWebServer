@@ -7,7 +7,7 @@
         private readonly object model;
 
         public JsonActionResult(HttpRequest request, object model)
-            : base (request)
+            : base(request)
         {
             this.model = model;
         }

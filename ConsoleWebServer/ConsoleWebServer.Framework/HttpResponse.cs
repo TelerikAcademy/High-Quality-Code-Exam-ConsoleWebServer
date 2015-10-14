@@ -44,7 +44,7 @@
             stringBuilder.AppendLine(
                 string.Format(
                     "{0}{1} {2} {3}",
-                    HttpVersionPrefix,
+                    HttpMessage.HttpVersionPrefix,
                     this.ProtocolVersion,
                     (int)this.StatusCode,
                     this.StatusCodeAsString));

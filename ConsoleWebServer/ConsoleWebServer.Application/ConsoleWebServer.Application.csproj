@@ -45,9 +45,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebServerConsole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Files\best-helpers-2015.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleWebServer.Framework\ConsoleWebServer.Framework.csproj">
@@ -55,9 +59,7 @@
       <Name>ConsoleWebServer.Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Files\data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

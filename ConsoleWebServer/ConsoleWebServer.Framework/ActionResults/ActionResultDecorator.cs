@@ -9,13 +9,13 @@
             this.actionResult = actionResult;
         }
 
-        protected abstract void UpdateResponse(HttpResponse response);
-
         public HttpResponse GetResponse()
         {
             var response = this.actionResult.GetResponse();
             this.UpdateResponse(response);
             return response;
         }
+
+        protected abstract void UpdateResponse(HttpResponse response);
     }
 }

@@ -27,6 +27,7 @@
                 throw new ParserException(
                     "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
             }
+
             var requestObject = new HttpRequest(
                 firstRequestLineParts[0],
                 firstRequestLineParts[1],
