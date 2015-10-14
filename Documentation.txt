@@ -28,10 +28,10 @@ Single responsibility principle
 Open/closed principle
 	* 
 
-Interface segregation principle
+Liskov substitution principle
 	* 
 
-Liskov substitution principle
+Interface segregation principle
 	* 
 
 Dependency inversion principle
