@@ -7,14 +7,14 @@ public class JsonActionResult : IActionResult
 {
     public readonly object model;
 
-    public JsonActionResult(HttpRequest request, object model)
+    public JsonActionResult(HttpRq request, object model)
     {
         this.model = model;
         this.Request = request;
         this.ResponseHeaders = new List<KeyValuePair<string, string>>();
     }
 
-    public HttpRequest Request { get; private set; }
+    public HttpRq Request { get; private set; }
 
     public List<KeyValuePair<string, string>> ResponseHeaders { get; private set; }
 
@@ -46,7 +46,7 @@ public class JsonActionResult : IActionResult
 }
 public class JsonActionResultWithCors : JsonActionResult
 {
-    public JsonActionResultWithCors(HttpRequest request, object model, string corsSettings)
+    public JsonActionResultWithCors(HttpRq request, object model, string corsSettings)
         : base(request, model)
     {
         this.ResponseHeaders.Add(new KeyValuePair<string, string>("Access-Control-Allow-Origin", corsSettings));
@@ -55,7 +55,7 @@ public class JsonActionResultWithCors : JsonActionResult
 
 public class JsonActionResultWithoutCaching : JsonActionResult
 {
-    public JsonActionResultWithoutCaching(HttpRequest request, object model)
+    public JsonActionResultWithoutCaching(HttpRq request, object model)
         : base(request, model)
     {
         this.ResponseHeaders.Add(new KeyValuePair<string, string>("Cache-Control", "private, max-age=0, no-cache"));
@@ -64,7 +64,7 @@ public class JsonActionResultWithoutCaching : JsonActionResult
 
 public class JsonActionResultWithCorsWithoutCaching : JsonActionResult
 {
-    public JsonActionResultWithCorsWithoutCaching(HttpRequest request, object model, string corsSettings)
+    public JsonActionResultWithCorsWithoutCaching(HttpRq request, object model, string corsSettings)
         : base(request, model)
     {
         this.ResponseHeaders.Add(new KeyValuePair<string, string>("Access-Control-Allow-Origin", corsSettings));

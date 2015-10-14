@@ -2,13 +2,11 @@
 using System.Collections.Generic;using System.Text;
 using System.Text;
 
-public class HttpRequest
+public class HttpRq
 {
-    protected const string HttpVersionPrefix = "HTTP/";
-
-    public HttpRequest(string method, string uri, string httpVersion)
+    public HttpRq(string method, string uri, string httpVersion)
     {
-        this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
+        this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace("HTTP/".ToLower(), string.Empty));
         this.Headers = new SortedDictionary<string, ICollection<string>>();
         this.Uri = uri;
         this.Method = method;
@@ -43,7 +41,7 @@ public class HttpRequest
                 "{0} {1} {2}{3}",
                 this.Method,
                 this.Action,
-                HttpVersionPrefix,
+                "HTTP/",
                 this.ProtocolVersion));
         var headerStringBuilder = new StringBuilder();
         foreach (var key in this.Headers.Keys)

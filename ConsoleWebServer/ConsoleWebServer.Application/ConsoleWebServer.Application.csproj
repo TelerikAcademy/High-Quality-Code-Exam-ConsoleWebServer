@@ -45,13 +45,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebServerConsole.cs" />
+    <Compile Include="WebServerConsole5.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Files\best-helpers-2015.csv">
+    <Content Include="Files\best-helpers-2015.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleWebServer.Framework\ConsoleWebServer.Framework.csproj">

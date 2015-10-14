@@ -5,13 +5,13 @@ using System.Net;
 
 public class StaticFileHandler
 {
-    public bool CanHandle(HttpRequest request)
+    public bool CanHandle(HttpRq request)
     {
         return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
                 > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
     }
 
-    public HttpResponse Handle(HttpRequest request)
+    public HttpResponse Handle(HttpRq request)
     {
         var filePath = Environment.CurrentDirectory + "/" + request.Uri;
         if (!this.FileExists("C:\\", filePath, 3))

@@ -2,7 +2,7 @@
 
 public class RequestParser
 {
-    public HttpRequest Parse(string requestAsString)
+    public HttpRq Parse(string requestAsString)
     {
         var textReader = new StringReader(requestAsString);
         var firstLine = textReader.ReadLine();
@@ -17,7 +17,7 @@ public class RequestParser
         return requestObject;
     }
 
-    private HttpRequest CreateRequest(string firstRequestLine)
+    private HttpRq CreateRequest(string firstRequestLine)
     {
         var firstRequestLineParts = firstRequestLine.Split(' ');
         if (firstRequestLineParts.Length != 3)
@@ -26,7 +26,7 @@ public class RequestParser
                 "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
         }
 
-        var requestObject = new HttpRequest(
+        var requestObject = new HttpRq(
             firstRequestLineParts[0],
             firstRequestLineParts[1],
             firstRequestLineParts[2]);
@@ -34,7 +34,7 @@ public class RequestParser
         return requestObject;
     }
 
-    private void AddHeaderToRequest(HttpRequest request, string headerLine)
+    private void AddHeaderToRequest(HttpRq request, string headerLine)
     {
         var headerParts = headerLine.Split(new[] { ':' }, 2);
         var headerName = headerParts[0].Trim();

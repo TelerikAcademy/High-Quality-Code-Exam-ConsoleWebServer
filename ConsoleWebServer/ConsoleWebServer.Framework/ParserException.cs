@@ -2,7 +2,7 @@
 
         public class ParserException : Exception
         {
-            public ParserException(string message)
+            public ParserException(string message, ActionDescriptor request = null)
                 : base(message)
             {
             }

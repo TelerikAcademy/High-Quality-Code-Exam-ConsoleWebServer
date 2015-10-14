@@ -5,7 +5,7 @@ using System.Net;
 
 public class ResponseProvider
 {
-    private HttpResponse Process(HttpRequest request)
+    private HttpResponse Process(HttpRq request)
     {
         if (request.Method.ToLower() == "options")
         {
@@ -38,7 +38,7 @@ public class ResponseProvider
                 var actionResult = actionInvoker.InvokeAction(controller, request.Action);
                 response = actionResult.GetResponse();
             }
-            catch (HttpNotFoundException exception)
+            catch (HttpNotFound exception)
             {
                 response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, exception.Message);
             }
@@ -55,7 +55,7 @@ public class ResponseProvider
         }
     }
 
-    private Controller CreateController(HttpRequest request)
+    private Controller CreateController(HttpRq request)
     {
         var controllerClassName = request.Action.ControllerName + "Controller";
         var type =
@@ -66,7 +66,7 @@ public class ResponseProvider
 
         if (type == null)
         {
-            throw new HttpNotFoundException(
+            throw new HttpNotFound(
                 string.Format("Controller with name {0} not found!", controllerClassName));
         }
 
@@ -76,7 +76,7 @@ public class ResponseProvider
 
     public HttpResponse GetResponse(string requestAsString)
     {
-        HttpRequest request;
+        HttpRq request;
         try
         {
             var requestParser = new RequestParser();

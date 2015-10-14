@@ -70,14 +70,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvoker.cs" />
+    <Compile Include="HighQualityCodeExamPointsProvider.cs" />
     <Compile Include="JsonActionResult.cs" />
     <Compile Include="ContentActionResult.cs" />
     <Compile Include="NewActionInvoker.cs" />
     <Compile Include="StaticFileHandler.cs" />
-    <Compile Include="HttpNotFoundException.cs" />
+    <Compile Include="HttpNotFound.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="HttpResponse.cs" />
+    <Compile Include="HR.cs" />
     <Compile Include="IActionResult.cs" />
     <Compile Include="IResponseProvider.cs" />
     <Compile Include="ParserException.cs" />

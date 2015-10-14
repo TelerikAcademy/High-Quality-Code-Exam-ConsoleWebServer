@@ -5,19 +5,17 @@ using System.Text;
 
 public class HttpResponse
 {
-    public const string DefaultContentType = "text/plain; charset=utf-8";
-
-    private const string ServerEngineName = "ConsoleWebServer";
-
-    protected const string HttpVersionPrefix = "HTTP/";
+    private string ServerEngineName;
 
     public HttpResponse(
         Version httpVersion,
         HttpStatusCode statusCode,
         string body,
-        string contentType = DefaultContentType)
+        string contentType = "text/plain; charset=utf-8")
     {
-        this.ProtocolVersion = Version.Parse(httpVersion.ToString().ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
+        ServerEngineName = "ConsoleWebServer";
+        ;
+        this.ProtocolVersion = Version.Parse(httpVersion.ToString().ToLower().Replace("HTTP/".ToLower(), string.Empty));
         this.Headers = new SortedDictionary<string, ICollection<string>>();
         this.Body = body;
         this.StatusCode = statusCode;
@@ -58,7 +56,7 @@ public class HttpResponse
         stringBuilder.AppendLine(
             string.Format(
                 "{0}{1} {2} {3}",
-                HttpVersionPrefix,
+                "HTTP/",
                 this.ProtocolVersion,
                 (int)this.StatusCode,
                 this.StatusCodeAsString));
