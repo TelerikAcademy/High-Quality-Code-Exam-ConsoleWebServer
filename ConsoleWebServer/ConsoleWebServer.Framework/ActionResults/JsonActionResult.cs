@@ -3,11 +3,11 @@
     using System.Net;
     using Newtonsoft.Json;
 
-    public class JsonViewResult : BaseActionResult
+    public class JsonActionResult : BaseActionResult
     {
         private readonly object model;
 
-        public JsonViewResult(HttpRequest request, object model)
+        public JsonActionResult(HttpRequest request, object model)
             : base (request)
         {
             this.model = model;

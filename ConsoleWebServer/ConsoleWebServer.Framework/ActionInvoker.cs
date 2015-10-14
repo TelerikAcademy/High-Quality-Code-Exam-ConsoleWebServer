@@ -13,7 +13,7 @@
                     .GetMethods()
                     .FirstOrDefault(
                         x =>
-                        x.Name == actionDescriptor.ActionName && x.GetParameters().Length == 1
+                        x.Name.ToLower() == actionDescriptor.ActionName.ToLower() && x.GetParameters().Length == 1
                         && x.GetParameters()[0].ParameterType == typeof(string)
                         && x.ReturnType == typeof(IActionResult));
             if (methodWithIntParameter == null)

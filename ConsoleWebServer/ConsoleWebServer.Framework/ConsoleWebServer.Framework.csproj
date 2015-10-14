@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="ActionInvoker.cs" />
     <Compile Include="ActionResults\BaseActionResult.cs" />
-    <Compile Include="ActionResults\JsonViewResult.cs" />
+    <Compile Include="ActionResults\JsonActionResult.cs" />
     <Compile Include="ActionResults\ViewActionResult.cs" />
     <Compile Include="ControllerFactory.cs" />
     <Compile Include="Handlers\ControllerHandler.cs" />

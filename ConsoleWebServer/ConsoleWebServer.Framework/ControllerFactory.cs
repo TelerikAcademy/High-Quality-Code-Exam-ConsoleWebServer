@@ -12,7 +12,7 @@
             var type = Assembly
                 .GetEntryAssembly()
                 .GetTypes()
-                .FirstOrDefault(x => x.Name == controllerClassName && typeof(Controller).IsAssignableFrom(x));
+                .FirstOrDefault(x => x.Name.ToLower() == controllerClassName.ToLower() && typeof(Controller).IsAssignableFrom(x));
             
             if (type == null)
             {

@@ -14,7 +14,7 @@
 
         protected override HttpResponse Handle(HttpRequest request)
         {
-            var fileContents = File.ReadAllText(request.Uri);
+            var fileContents = File.ReadAllText(request.Uri.TrimStart('/'));
             var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, fileContents);
             return response;
         }
