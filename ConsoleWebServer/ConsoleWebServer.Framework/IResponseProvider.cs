@@ -1,7 +1,7 @@
-﻿namespace ConsoleWebServer.Framework
+﻿public interface IResponseProvider
 {
-    public interface IResponseProvider
-    {
-        HttpResponse GetResponse(string requestAsString);
-    }
+    HttpResponse GetResponse(string requestAsString);
 }
+
+
+

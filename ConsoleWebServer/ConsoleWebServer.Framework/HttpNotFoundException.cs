@@ -1,12 +1,9 @@
-﻿namespace ConsoleWebServer.Framework
-{
-    using System;
+﻿using System;
 
-    public class HttpNotFoundException : Exception
+public class HttpNotFoundException : Exception
+{
+    public HttpNotFoundException(string message)
+        : base(message)
     {
-        public HttpNotFoundException(string message)
-            : base(message)
-        {
-        }
     }
 }

@@ -1,7 +1,4 @@
-﻿namespace ConsoleWebServer.Framework
+﻿public interface IActionResult
 {
-    public interface IActionResult
-    {
-        HttpResponse GetResponse();
-    }
+    HttpResponse GetResponse();
 }

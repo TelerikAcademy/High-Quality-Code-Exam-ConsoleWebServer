@@ -1,59 +1,56 @@
-﻿namespace ConsoleWebServer.Framework
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+public class HttpRequest
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    protected const string HttpVersionPrefix = "HTTP/";
 
-    public class HttpRequest
+    public HttpRequest(string method, string uri, string httpVersion)
     {
-        protected const string HttpVersionPrefix = "HTTP/";
+        this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
+        this.Headers = new SortedDictionary<string, ICollection<string>>();
+        this.Uri = uri;
+        this.Method = method;
+        this.Action = new ActionDescriptor(uri);
+    }
 
-        public HttpRequest(string method, string uri, string httpVersion)
+    public Version ProtocolVersion { get; protected set; }
+
+    public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+
+    public void AddHeader(string name, string value)
+    {
+        if (!this.Headers.ContainsKey(name))
         {
-            this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
-            this.Headers = new SortedDictionary<string, ICollection<string>>();
-            this.Uri = uri;
-            this.Method = method;
-            this.Action = new ActionDescriptor(uri);
+            this.Headers.Add(name, new HashSet<string>());
         }
 
-        public Version ProtocolVersion { get; protected set; }
+        this.Headers[name].Add(value);
+    }
 
-        public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+    public string Uri { get; private set; }
 
-        public void AddHeader(string name, string value)
+    public string Method { get; private set; }
+
+    public ActionDescriptor Action { get; private set; }
+
+    public override string ToString()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine(
+            string.Format(
+                "{0} {1} {2}{3}",
+                this.Method,
+                this.Action,
+                HttpVersionPrefix,
+                this.ProtocolVersion));
+        var headerStringBuilder = new StringBuilder();
+        foreach (var key in this.Headers.Keys)
         {
-            if (!this.Headers.ContainsKey(name))
-            {
-                this.Headers.Add(name, new HashSet<string>());
-            }
-
-            this.Headers[name].Add(value);
+            headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
         }
-
-        public string Uri { get; private set; }
-
-        public string Method { get; private set; }
-
-        public ActionDescriptor Action { get; private set; }
-
-        public override string ToString()
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(
-                string.Format(
-                    "{0} {1} {2}{3}",
-                    this.Method,
-                    this.Action,
-                    HttpVersionPrefix,
-                    this.ProtocolVersion));
-            var headerStringBuilder = new StringBuilder();
-            foreach (var key in this.Headers.Keys)
-            {
-                headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
-            }
-            stringBuilder.AppendLine(headerStringBuilder.ToString());
-            return stringBuilder.ToString();
-        }
+        stringBuilder.AppendLine(headerStringBuilder.ToString());
+        return stringBuilder.ToString();
     }
 }

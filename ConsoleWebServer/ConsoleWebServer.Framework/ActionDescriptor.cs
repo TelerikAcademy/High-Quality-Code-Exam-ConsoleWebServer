@@ -1,35 +1,32 @@
-﻿namespace ConsoleWebServer.Framework
+﻿using System;
+
+public class ActionDescriptor
 {
-    using System;
+    public const string DefaultControllerName = "Home";
 
-    public class ActionDescriptor
+    public const string DefaultActionName = "Index";
+
+    public ActionDescriptor(string uri)
     {
-        public const string DefaultControllerName = "Home";
+        uri = uri ?? string.Empty;
 
-        public const string DefaultActionName = "Index";
+        var uriParts = uri.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-        public ActionDescriptor(string uri)
-        {
-            uri = uri ?? string.Empty;
+        this.ControllerName = uriParts.Length > 0 ? uriParts[0] : DefaultControllerName;
 
-            var uriParts = uri.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        this.ActionName = uriParts.Length > 1 ? uriParts[1] : DefaultActionName;
 
-            this.ControllerName = uriParts.Length > 0 ? uriParts[0] : DefaultControllerName;
+        this.Parameter = uriParts.Length > 2 ? uriParts[2] : DefaultControllerName;
+    }
 
-            this.ActionName = uriParts.Length > 1 ? uriParts[1] : DefaultActionName;
+    public string ControllerName { get; private set; }
 
-            this.Parameter = uriParts.Length > 2 ? uriParts[2] : DefaultControllerName;
-        }
+    public string ActionName { get; private set; }
 
-        public string ControllerName { get; private set; }
+    public string Parameter { get; private set; }
 
-        public string ActionName { get; private set; }
-
-        public string Parameter { get; private set; }
-
-        public override string ToString()
-        {
-            return string.Format("/{0}/{1}/{2}", this.ControllerName, this.ActionName, this.Parameter);
-        }
+    public override string ToString()
+    {
+        return string.Format("/{0}/{1}/{2}", this.ControllerName, this.ActionName, this.Parameter);
     }
 }

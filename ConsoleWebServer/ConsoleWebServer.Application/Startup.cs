@@ -1,7 +1,6 @@
-﻿namespace ConsoleWebServer.Application
-{
-    // TODO: Describe patterns, SOLID, bugs and bottleneck in Documentation.txt
-    public static class Startup
+﻿    // TODO: Describe patterns, SOLID, bugs and bottleneck in Documentation.txt
+
+public static class Startup
     {
         public static void Main()
         {
@@ -9,4 +8,3 @@
             webSever.Start();
         }
     }
-}

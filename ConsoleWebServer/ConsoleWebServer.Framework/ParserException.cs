@@ -1,12 +1,9 @@
-﻿namespace ConsoleWebServer.Framework
-{
-    using System;
+﻿        using System;
 
-    public class ParserException : Exception
-    {
-        public ParserException(string message)
-            : base(message)
+        public class ParserException : Exception
         {
+            public ParserException(string message)
+                : base(message)
+            {
+            }
         }
-    }
-}

@@ -1,47 +1,44 @@
-﻿namespace ConsoleWebServer.Framework
+﻿using System.IO;
+
+public class RequestParser
 {
-    using System.IO;
-
-    public class RequestParser
+    public HttpRequest Parse(string requestAsString)
     {
-        public HttpRequest Parse(string requestAsString)
+        var textReader = new StringReader(requestAsString);
+        var firstLine = textReader.ReadLine();
+        var requestObject = this.CreateRequest(firstLine);
+
+        string line;
+        while ((line = textReader.ReadLine()) != null)
         {
-            var textReader = new StringReader(requestAsString);
-            var firstLine = textReader.ReadLine();
-            var requestObject = this.CreateRequest(firstLine);
-
-            string line;
-            while ((line = textReader.ReadLine()) != null)
-            {
-                this.AddHeaderToRequest(requestObject, line);
-            }
-
-            return requestObject;
+            this.AddHeaderToRequest(requestObject, line);
         }
 
-        private HttpRequest CreateRequest(string firstRequestLine)
+        return requestObject;
+    }
+
+    private HttpRequest CreateRequest(string firstRequestLine)
+    {
+        var firstRequestLineParts = firstRequestLine.Split(' ');
+        if (firstRequestLineParts.Length != 3)
         {
-            var firstRequestLineParts = firstRequestLine.Split(' ');
-            if (firstRequestLineParts.Length != 3)
-            {
-                throw new ParserException(
-                    "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
-            }
-
-            var requestObject = new HttpRequest(
-                firstRequestLineParts[0],
-                firstRequestLineParts[1],
-                firstRequestLineParts[2]);
-
-            return requestObject;
+            throw new ParserException(
+                "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
         }
 
-        private void AddHeaderToRequest(HttpRequest request, string headerLine)
-        {
-            var headerParts = headerLine.Split(new[] { ':' }, 2);
-            var headerName = headerParts[0].Trim();
-            var headerValue = headerParts.Length == 2 ? headerParts[1].Trim() : string.Empty;
-            request.AddHeader(headerName, headerValue);
-        }
+        var requestObject = new HttpRequest(
+            firstRequestLineParts[0],
+            firstRequestLineParts[1],
+            firstRequestLineParts[2]);
+
+        return requestObject;
+    }
+
+    private void AddHeaderToRequest(HttpRequest request, string headerLine)
+    {
+        var headerParts = headerLine.Split(new[] { ':' }, 2);
+        var headerName = headerParts[0].Trim();
+        var headerValue = headerParts.Length == 2 ? headerParts[1].Trim() : string.Empty;
+        request.AddHeader(headerName, headerValue);
     }
 }

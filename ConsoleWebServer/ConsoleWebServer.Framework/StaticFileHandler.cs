@@ -1,60 +1,57 @@
-﻿namespace ConsoleWebServer.Framework
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net;
+
+public class StaticFileHandler
 {
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-
-    public class StaticFileHandler
+    public bool CanHandle(HttpRequest request)
     {
-        public bool CanHandle(HttpRequest request)
+        return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
+                > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
+    }
+
+    public HttpResponse Handle(HttpRequest request)
+    {
+        var filePath = Environment.CurrentDirectory + "/" + request.Uri;
+        if (!this.FileExists("C:\\", filePath, 3))
         {
-            return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
-                   > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
+            return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found");
         }
 
-        public HttpResponse Handle(HttpRequest request)
-        {
-            var filePath = Environment.CurrentDirectory + "/" + request.Uri;
-            if (!this.FileExists("C:\\", filePath, 3))
-            {
-                return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found");
-            }
+        var fileContents = File.ReadAllText(filePath);
+        var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, fileContents);
+        return response;
+    }
 
-            var fileContents = File.ReadAllText(filePath);
-            var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, fileContents);
-            return response;
+    private bool FileExists(string path, string filePath, int depth)
+    {
+        if (depth <= 0)
+        {
+            return File.Exists(filePath);
         }
-
-        private bool FileExists(string path, string filePath, int depth)
+        try
         {
-            if (depth <= 0)
+            var files = Directory.GetFiles(path);
+            if (files.Contains(filePath))
             {
-                return File.Exists(filePath);
+                return true;
             }
-            try
+
+            var directories = Directory.GetDirectories(path);
+            foreach (var directory in directories)
             {
-                var files = Directory.GetFiles(path);
-                if (files.Contains(filePath))
+                if (this.FileExists(directory, filePath, depth - 1))
                 {
                     return true;
                 }
-
-                var directories = Directory.GetDirectories(path);
-                foreach (var directory in directories)
-                {
-                    if (this.FileExists(directory, filePath, depth - 1))
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
             }
-            catch (Exception)
-            {
-                return false;
-            }
+
+            return false;
+        }
+        catch (Exception)
+        {
+            return false;
         }
     }
 }

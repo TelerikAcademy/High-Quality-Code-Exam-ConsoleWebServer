@@ -1,81 +1,78 @@
-﻿namespace ConsoleWebServer.Framework
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Text;
+
+public class HttpResponse
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Text;
+    public const string DefaultContentType = "text/plain; charset=utf-8";
 
-    public class HttpResponse
+    private const string ServerEngineName = "ConsoleWebServer";
+
+    protected const string HttpVersionPrefix = "HTTP/";
+
+    public HttpResponse(
+        Version httpVersion,
+        HttpStatusCode statusCode,
+        string body,
+        string contentType = DefaultContentType)
     {
-        public const string DefaultContentType = "text/plain; charset=utf-8";
+        this.ProtocolVersion = Version.Parse(httpVersion.ToString().ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
+        this.Headers = new SortedDictionary<string, ICollection<string>>();
+        this.Body = body;
+        this.StatusCode = statusCode;
+        this.AddHeader("Server", ServerEngineName);
+        this.AddHeader("Content-Length", body.Length.ToString());
+        this.AddHeader("Content-Type", contentType);
+    }
 
-        private const string ServerEngineName = "ConsoleWebServer";
+    public Version ProtocolVersion { get; protected set; }
 
-        protected const string HttpVersionPrefix = "HTTP/";
+    public IDictionary<string, ICollection<string>> Headers { get; protected set; }
 
-        public HttpResponse(
-            Version httpVersion,
-            HttpStatusCode statusCode,
-            string body,
-            string contentType = DefaultContentType)
+    public void AddHeader(string name, string value)
+    {
+        if (!this.Headers.ContainsKey(name))
         {
-            this.ProtocolVersion = Version.Parse(httpVersion.ToString().ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
-            this.Headers = new SortedDictionary<string, ICollection<string>>();
-            this.Body = body;
-            this.StatusCode = statusCode;
-            this.AddHeader("Server", ServerEngineName);
-            this.AddHeader("Content-Length", body.Length.ToString());
-            this.AddHeader("Content-Type", contentType);
+            this.Headers.Add(name, new HashSet<string>());
         }
 
-        public Version ProtocolVersion { get; protected set; }
+        this.Headers[name].Add(value);
+    }
 
-        public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+    public HttpStatusCode StatusCode { get; private set; }
 
-        public void AddHeader(string name, string value)
+    public string Body { get; private set; }
+
+    public string StatusCodeAsString
+    {
+        get
         {
-            if (!this.Headers.ContainsKey(name))
-            {
-                this.Headers.Add(name, new HashSet<string>());
-            }
+            return this.StatusCode.ToString();
+        }
+    }
 
-            this.Headers[name].Add(value);
+    public override string ToString()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine(
+            string.Format(
+                "{0}{1} {2} {3}",
+                HttpVersionPrefix,
+                this.ProtocolVersion,
+                (int)this.StatusCode,
+                this.StatusCodeAsString));
+        var headerStringBuilder = new StringBuilder();
+        foreach (var key in this.Headers.Keys)
+        {
+            headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
+        }
+        stringBuilder.AppendLine(headerStringBuilder.ToString());
+        if (!string.IsNullOrWhiteSpace(this.Body))
+        {
+            stringBuilder.AppendLine(this.Body);
         }
 
-        public HttpStatusCode StatusCode { get; private set; }
-
-        public string Body { get; private set; }
-
-        public string StatusCodeAsString
-        {
-            get
-            {
-                return this.StatusCode.ToString();
-            }
-        }
-
-        public override string ToString()
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(
-                string.Format(
-                    "{0}{1} {2} {3}",
-                    HttpVersionPrefix,
-                    this.ProtocolVersion,
-                    (int)this.StatusCode,
-                    this.StatusCodeAsString));
-            var headerStringBuilder = new StringBuilder();
-            foreach (var key in this.Headers.Keys)
-            {
-                headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
-            }
-            stringBuilder.AppendLine(headerStringBuilder.ToString());
-            if (!string.IsNullOrWhiteSpace(this.Body))
-            {
-                stringBuilder.AppendLine(this.Body);
-            }
-
-            return stringBuilder.ToString();
-        }
+        return stringBuilder.ToString();
     }
 }
