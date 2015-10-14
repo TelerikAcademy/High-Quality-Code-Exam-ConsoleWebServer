@@ -21,7 +21,7 @@
             {
                 throw new HttpNotFoundException(
                     string.Format(
-                        "Expected method with signature IActionResult {0}(string) in class {1}",
+                        "Expected method with signature IActionResult {0}(string) in class {1}Controller",
                         actionDescriptor.ActionName,
                         actionDescriptor.ControllerName));
             }

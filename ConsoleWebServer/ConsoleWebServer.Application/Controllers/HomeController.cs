@@ -29,10 +29,5 @@
                 new ActionResultWithNoCachingDecorator(
                     new ContentActionResult(this.Request, "Live page with no caching and CORS")));
         }
-
-        public IActionResult Forum(string param)
-        {
-            return this.Redirect("https://telerikacademy.com/Forum/Home");
-        }
     }
 }

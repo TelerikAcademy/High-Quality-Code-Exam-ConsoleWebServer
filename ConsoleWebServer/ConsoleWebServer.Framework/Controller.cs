@@ -20,10 +20,5 @@
         {
             return new JsonActionResult(this.Request, model);
         }
-
-        protected IActionResult Redirect(string location)
-        {
-            return new RedirectActionResult(this.Request, location);
-        }
     }
 }
