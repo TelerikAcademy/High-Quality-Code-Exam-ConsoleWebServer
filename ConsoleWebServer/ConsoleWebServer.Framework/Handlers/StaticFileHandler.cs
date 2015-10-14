@@ -15,8 +15,7 @@
 
         protected override HttpResponse Handle(HttpRequest request)
         {
-            var filePath = Environment.CurrentDirectory + "/" + request.Uri;
-            if (!this.FileExists("C:\\", filePath, 3))
+            if (!File.Exists(filePath))
             {
                 return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found!");
             }
