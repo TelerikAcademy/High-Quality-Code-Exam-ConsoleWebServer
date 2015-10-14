@@ -43,26 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handlers\ActionInvoker.cs" />
-    <Compile Include="ActionResults\ActionResultWithNoCachingDecorator.cs" />
-    <Compile Include="ActionResults\ActionResultDecorator.cs" />
-    <Compile Include="ActionResults\ActionResultWithCorsDecorator.cs" />
-    <Compile Include="ActionResults\BaseActionResult.cs" />
-    <Compile Include="ActionResults\JsonActionResult.cs" />
-    <Compile Include="ActionResults\ContentActionResult.cs" />
-    <Compile Include="Handlers\ControllerFactory.cs" />
-    <Compile Include="Handlers\ControllerHandler.cs" />
-    <Compile Include="Handlers\Handler.cs" />
-    <Compile Include="Handlers\HandlerFactory.cs" />
-    <Compile Include="Handlers\IHandlerFactory.cs" />
-    <Compile Include="Handlers\OptionsHandler.cs" />
-    <Compile Include="Handlers\StaticFileHandler.cs" />
+    <Compile Include="ActionInvoker.cs" />
+    <Compile Include="JsonActionResult.cs" />
+    <Compile Include="ContentActionResult.cs" />
+    <Compile Include="StaticFileHandler.cs" />
     <Compile Include="HttpMessage.cs" />
     <Compile Include="HttpNotFoundException.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="HttpResponse.cs" />
-    <Compile Include="ActionResults\IActionResult.cs" />
+    <Compile Include="IActionResult.cs" />
     <Compile Include="IResponseProvider.cs" />
     <Compile Include="ParserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

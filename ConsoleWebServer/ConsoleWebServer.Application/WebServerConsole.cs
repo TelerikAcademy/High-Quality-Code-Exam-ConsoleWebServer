@@ -7,11 +7,11 @@
 
     public class WebServerConsole
     {
-        private readonly IResponseProvider responseProvider;
+        private readonly ResponseProvider responseProvider;
 
-        public WebServerConsole(IResponseProvider responseProvider)
+        public WebServerConsole()
         {
-            this.responseProvider = responseProvider;
+            this.responseProvider = new ResponseProvider();
         }
 
         public void Start()

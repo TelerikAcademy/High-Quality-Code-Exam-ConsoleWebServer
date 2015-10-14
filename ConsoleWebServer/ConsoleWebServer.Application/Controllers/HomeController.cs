@@ -1,7 +1,6 @@
 ﻿namespace ConsoleWebServer.Application.Controllers
 {
     using ConsoleWebServer.Framework;
-    using ConsoleWebServer.Framework.ActionResults;
 
     public class HomeController : Controller
     {
@@ -17,17 +16,12 @@
 
         public IActionResult LivePage(string param)
         {
-            return
-                new ActionResultWithNoCachingDecorator(
-                    new ContentActionResult(this.Request, "Live page with no caching"));
+            return new ContentActionResultWithoutCaching(this.Request, "Live page with no caching");
         }
 
         public IActionResult LivePageForAjax(string param)
         {
-            return new ActionResultWithCorsDecorator(
-                "*",
-                new ActionResultWithNoCachingDecorator(
-                    new ContentActionResult(this.Request, "Live page with no caching and CORS")));
+            return new ContentActionResultWithCorsWithoutCaching(this.Request, "Live page with no caching and CORS", "*");
         }
     }
 }

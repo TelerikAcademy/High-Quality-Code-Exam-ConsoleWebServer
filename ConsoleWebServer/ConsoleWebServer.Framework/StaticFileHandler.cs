@@ -1,19 +1,19 @@
-﻿namespace ConsoleWebServer.Framework.Handlers
+﻿namespace ConsoleWebServer.Framework
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Net;
 
-    public class StaticFileHandler : Handler
+    public class StaticFileHandler
     {
-        protected override bool CanHandle(HttpRequest request)
+        public bool CanHandle(HttpRequest request)
         {
             return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
                    > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
         }
 
-        protected override HttpResponse Handle(HttpRequest request)
+        public HttpResponse Handle(HttpRequest request)
         {
             var filePath = Environment.CurrentDirectory + "/" + request.Uri;
             if (!this.FileExists("C:\\", filePath, 3))

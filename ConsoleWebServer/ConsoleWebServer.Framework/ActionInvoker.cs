@@ -1,9 +1,7 @@
-﻿namespace ConsoleWebServer.Framework.Handlers
+﻿namespace ConsoleWebServer.Framework
 {
     using System.Linq;
     using System.Reflection;
-
-    using ConsoleWebServer.Framework.ActionResults;
 
     public class ActionInvoker
     {
