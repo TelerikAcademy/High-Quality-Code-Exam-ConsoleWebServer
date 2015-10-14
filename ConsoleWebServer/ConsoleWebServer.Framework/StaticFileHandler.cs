@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-
+using str = System.String;
 public class StaticFileHandler
 {
     public bool CanHandle(HttpRq request)
@@ -10,21 +10,18 @@ public class StaticFileHandler
         return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
                 > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
     }
-
     public HttpResponse Handle(HttpRq request)
     {
-        var filePath = Environment.CurrentDirectory + "/" + request.Uri;
+        str filePath = Environment.CurrentDirectory + "/" + request.Uri;
         if (!this.FileExists("C:\\", filePath, 3))
         {
             return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found");
         }
-
-        var fileContents = File.ReadAllText(filePath);
+        str fileContents = File.ReadAllText(filePath);
         var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, fileContents);
         return response;
     }
-
-    private bool FileExists(string path, string filePath, int depth)
+    private bool FileExists(str path, str filePath, int depth)
     {
         if (depth <= 0)
         {
@@ -32,25 +29,19 @@ public class StaticFileHandler
         }
         try
         {
-            var files = Directory.GetFiles(path);
-            if (files.Contains(filePath))
-            {
+            var f = Directory.GetFiles(path);
+            if (f.Contains(filePath)) {
                 return true;
             }
-
-            var directories = Directory.GetDirectories(path);
-            foreach (var directory in directories)
-            {
-                if (this.FileExists(directory, filePath, depth - 1))
-                {
+            var d = Directory.GetDirectories(path);
+            foreach (var dd in d) {
+                if (FileExists(dd, filePath, depth - 1)) {
                     return true;
                 }
             }
-
             return false;
         }
-        catch (Exception)
-        {
+        catch (Exception) {
             return false;
         }
     }

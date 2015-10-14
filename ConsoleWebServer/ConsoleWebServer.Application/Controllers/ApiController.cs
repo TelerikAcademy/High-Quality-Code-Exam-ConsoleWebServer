@@ -1,6 +1,5 @@
 ﻿using System;using System.Linq;
 using System.Linq;
-
 public class ApiController : Controller {
     public ApiController(HttpRq request):base(request) {
     }

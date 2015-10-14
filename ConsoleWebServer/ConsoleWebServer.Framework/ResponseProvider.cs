@@ -33,7 +33,7 @@ public class ResponseProvider
             HttpResponse response;
             try
             {
-                var controller = this.CreateController(request);
+                var controller = CreateController(request);
                 var actionInvoker = new NewActionInvoker();
                 var actionResult = actionInvoker.InvokeAction(controller, request.Action);
                 response = actionResult.GetResponse();
@@ -79,7 +79,7 @@ public class ResponseProvider
         HttpRq request;
         try
         {
-            var requestParser = new RequestParser();
+            var requestParser = new HttpRq("GET","/","1.1");
             request = requestParser.Parse(requestAsString);
         }
         catch (Exception ex)

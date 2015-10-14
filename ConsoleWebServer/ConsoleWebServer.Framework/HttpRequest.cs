@@ -1,15 +1,17 @@
 ﻿using System;using System.Linq;
-using System.Collections.Generic;using System.Text;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
-
+using System.Text;
+using R = HttpRq;
 public class HttpRq
 {
-    public HttpRq(string method, string uri, string httpVersion)
+    public HttpRq(string m, string uri, string httpVersion)
     {
         this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace("HTTP/".ToLower(), string.Empty));
         this.Headers = new SortedDictionary<string, ICollection<string>>();
         this.Uri = uri;
-        this.Method = method;
+        this.Method = m;
         this.Action = new ActionDescriptor(uri);
     }
 
@@ -50,5 +52,44 @@ public class HttpRq
         }
         stringBuilder.AppendLine(headerStringBuilder.ToString());
         return stringBuilder.ToString();
+    }
+    public R Parse(string reqAsStr)
+    {
+        var textReader = new StringReader(reqAsStr);
+        var firstLine = textReader.ReadLine();
+        var requestObject = CreateRequest(firstLine);
+
+        string line;
+        while ((line = textReader.ReadLine()) != null)
+        {
+            this.AddHeaderToRequest(requestObject, line);
+        }
+
+        return requestObject;
+    }
+
+    private R CreateRequest(string frl)
+    {
+        var firstRequestLineParts = frl.Split(' ');
+        if (firstRequestLineParts.Length != 3)
+        {
+            throw new HttpNotFound.ParserException(
+                "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
+        }
+
+        var requestObject = new R(
+            firstRequestLineParts[0],
+            firstRequestLineParts[1],
+            firstRequestLineParts[2]);
+
+        return requestObject;
+    }
+
+    private void AddHeaderToRequest(R r, string headerLine)
+    {
+        var hp = headerLine.Split(new[] { ':' }, 2);
+        var hn = hp[0].Trim();
+        var hv = hp.Length == 2 ? hp[1].Trim() : string.Empty;
+        r.AddHeader(hn, hv);
     }
 }

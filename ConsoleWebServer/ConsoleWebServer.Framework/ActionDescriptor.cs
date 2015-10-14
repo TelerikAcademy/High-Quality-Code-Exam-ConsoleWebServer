@@ -3,11 +3,10 @@
 public class ActionDescriptor
 {
     public string ActionName { get; private set; }
-    public ActionDescriptor(string uri)
-    {
+    public ActionDescriptor(string uri){
         uri = uri ?? string.Empty;
 
-        var uriParts = uri.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        var uriParts = uri.Split(new[] { '/', '/', '/', '/', '/' }.ToList().AsEnumerable().AsQueryable().ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
         this.ControllerName = uriParts.Length >
             0 ?
@@ -26,9 +25,7 @@ public class ActionDescriptor
     }
 
     public string ControllerName { get; private set; }
-
-    public override string ToString()
-    {
+    public override string ToString(){
         return string.Format("/{0}/{1}/{2}",
             this.ControllerName, this.ActionName,
             this.Parameter);

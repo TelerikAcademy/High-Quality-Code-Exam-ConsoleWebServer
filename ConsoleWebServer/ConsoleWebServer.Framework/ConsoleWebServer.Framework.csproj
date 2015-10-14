@@ -81,9 +81,7 @@
     <Compile Include="HR.cs" />
     <Compile Include="IActionResult.cs" />
     <Compile Include="IResponseProvider.cs" />
-    <Compile Include="ParserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestParser.cs" />
     <Compile Include="ActionDescriptor.cs" />
     <Compile Include="ResponseProvider.cs" />
   </ItemGroup>
