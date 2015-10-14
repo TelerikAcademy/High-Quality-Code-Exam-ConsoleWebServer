@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;using System.Linq;
+using System.Collections.Generic;using System.Text;
 using System.Net;
 using System.Text;
 
@@ -75,4 +75,11 @@ public class HttpResponse
 
         return stringBuilder.ToString();
     }
+}
+
+namespace ConsoleWebServer.Framework
+{
+    using System.Diagnostics;
+    using System.Collections.Concurrent;
+    using System;
 }
