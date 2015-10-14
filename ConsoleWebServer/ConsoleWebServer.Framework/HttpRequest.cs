@@ -1,15 +1,34 @@
 ﻿namespace ConsoleWebServer.Framework
 {
+    using System;
+    using System.Collections.Generic;
     using System.Text;
 
-    public class HttpRequest : HttpMessage
+    public class HttpRequest
     {
+        protected const string HttpVersionPrefix = "HTTP/";
+
         public HttpRequest(string method, string uri, string httpVersion)
-            : base(httpVersion)
         {
+            this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace(HttpVersionPrefix.ToLower(), string.Empty));
+            this.Headers = new SortedDictionary<string, ICollection<string>>();
             this.Uri = uri;
             this.Method = method;
             this.Action = new ActionDescriptor(uri);
+        }
+
+        public Version ProtocolVersion { get; protected set; }
+
+        public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+
+        public void AddHeader(string name, string value)
+        {
+            if (!this.Headers.ContainsKey(name))
+            {
+                this.Headers.Add(name, new HashSet<string>());
+            }
+
+            this.Headers[name].Add(value);
         }
 
         public string Uri { get; private set; }
@@ -26,9 +45,14 @@
                     "{0} {1} {2}{3}",
                     this.Method,
                     this.Action,
-                    HttpMessage.HttpVersionPrefix,
+                    HttpVersionPrefix,
                     this.ProtocolVersion));
-            stringBuilder.AppendLine(base.ToString().Trim());
+            var headerStringBuilder = new StringBuilder();
+            foreach (var key in this.Headers.Keys)
+            {
+                headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
+            }
+            stringBuilder.AppendLine(headerStringBuilder.ToString());
             return stringBuilder.ToString();
         }
     }

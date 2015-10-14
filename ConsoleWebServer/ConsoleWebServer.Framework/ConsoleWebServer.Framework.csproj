@@ -47,7 +47,6 @@
     <Compile Include="JsonActionResult.cs" />
     <Compile Include="ContentActionResult.cs" />
     <Compile Include="StaticFileHandler.cs" />
-    <Compile Include="HttpMessage.cs" />
     <Compile Include="HttpNotFoundException.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Controller.cs" />
