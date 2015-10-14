@@ -18,7 +18,7 @@
             var filePath = Environment.CurrentDirectory + "/" + request.Uri;
             if (!this.FileExists("C:\\", filePath, 3))
             {
-                return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found!");
+                return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found");
             }
 
             var fileContents = File.ReadAllText(filePath);

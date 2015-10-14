@@ -18,7 +18,7 @@
 
             this.ActionName = uriParts.Length > 1 ? uriParts[1] : DefaultActionName;
 
-            this.Parameter = uriParts.Length > 2 ? uriParts[2] : string.Empty;
+            this.Parameter = uriParts.Length > 2 ? uriParts[2] : DefaultControllerName;
         }
 
         public string ControllerName { get; private set; }

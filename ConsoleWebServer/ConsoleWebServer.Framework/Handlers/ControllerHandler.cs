@@ -7,7 +7,7 @@
     {
         protected override bool CanHandle(HttpRequest request)
         {
-            return request.ProtocolVersion.Major < 3;
+            return request.ProtocolVersion.Major <= 3;
         }
 
         protected override HttpResponse Handle(HttpRequest request)
