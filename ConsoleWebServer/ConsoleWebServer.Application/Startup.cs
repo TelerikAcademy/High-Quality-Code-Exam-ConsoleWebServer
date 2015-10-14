@@ -11,7 +11,7 @@
     {
         public static void Main()
         {
-            // TODO: Request reader
+            // TODO: Request reader?
             var requestBuilder = new StringBuilder();
             while (true)
             {
@@ -19,7 +19,9 @@
                 if (string.IsNullOrWhiteSpace(inputLine))
                 {
                     var response = GetResponse(requestBuilder.ToString());
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine(response);
+                    Console.ResetColor();
                     requestBuilder.Clear();
                     continue;
                 }

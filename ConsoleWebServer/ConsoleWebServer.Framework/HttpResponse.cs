@@ -6,9 +6,9 @@
 
     public class HttpResponse : HttpMessage
     {
-        private const string ServerEngineName = "ConsoleWebServer";
+        public const string DefaultContentType = "text/plain; charset=utf-8";
 
-        private const string DefaultContentType = "text/plain; charset=utf-8";
+        private const string ServerEngineName = "ConsoleWebServer";
 
         public HttpResponse(
             Version httpVersion,

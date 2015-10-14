@@ -14,7 +14,13 @@
 
         protected override HttpResponse Handle(HttpRequest request)
         {
-            var fileContents = File.ReadAllText(request.Uri.TrimStart('/'));
+            var fileName = request.Uri.TrimStart('/');
+            if (!File.Exists(fileName))
+            {
+                return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotFound, "File not found!");
+            }
+
+            var fileContents = File.ReadAllText(fileName);
             var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, fileContents);
             return response;
         }

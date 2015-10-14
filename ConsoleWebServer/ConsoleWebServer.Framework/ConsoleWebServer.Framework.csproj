@@ -44,9 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvoker.cs" />
+    <Compile Include="ActionResults\ActionResultWithNoCachingDecorator.cs" />
+    <Compile Include="ActionResults\ActionResultDecorator.cs" />
+    <Compile Include="ActionResults\ActionResultWithCorsDecorator.cs" />
     <Compile Include="ActionResults\BaseActionResult.cs" />
     <Compile Include="ActionResults\JsonActionResult.cs" />
-    <Compile Include="ActionResults\ViewActionResult.cs" />
+    <Compile Include="ActionResults\ContentActionResult.cs" />
     <Compile Include="ControllerFactory.cs" />
     <Compile Include="Handlers\ControllerHandler.cs" />
     <Compile Include="Handlers\Handler.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="ActionResults\IActionResult.cs" />
     <Compile Include="ParserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ActionResults\RedirectActionResult.cs" />
     <Compile Include="RequestParser.cs" />
     <Compile Include="ActionDescriptor.cs" />
   </ItemGroup>

@@ -1,6 +1,5 @@
 ﻿namespace ConsoleWebServer.Framework.ActionResults
 {
-    using System.Net;
     using Newtonsoft.Json;
 
     public class JsonActionResult : BaseActionResult
@@ -13,13 +12,14 @@
             this.model = model;
         }
 
-        public override HttpResponse GetResponse()
+        protected override string GetContent()
         {
-            return new HttpResponse(
-                this.Request.ProtocolVersion,
-                HttpStatusCode.OK,
-                JsonConvert.SerializeObject(this.model),
-                "application/json");
+            return JsonConvert.SerializeObject(this.model);
+        }
+
+        protected override string GetContentType()
+        {
+            return "application/json";
         }
     }
 }

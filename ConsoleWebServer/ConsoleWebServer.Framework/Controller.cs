@@ -6,15 +6,19 @@
     {
         public HttpRequest Request { get; internal set; }
 
-        protected IActionResult View(string name, object model)
+        protected IActionResult Content(object model)
         {
-            return new ViewActionResult(this.Request, name, model);
+            return new ContentActionResult(this.Request, model);
         }
 
         protected IActionResult Json(object model)
         {
-            // TODO
-            return null;
+            return new JsonActionResult(this.Request, model);
+        }
+
+        protected IActionResult Redirect(string location)
+        {
+            return new RedirectActionResult(this.Request, location);
         }
     }
 }
