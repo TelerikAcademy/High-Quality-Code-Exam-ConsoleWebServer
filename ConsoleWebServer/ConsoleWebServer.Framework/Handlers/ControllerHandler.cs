@@ -15,7 +15,7 @@
             HttpResponse response;
             try
             {
-                var controllerFactory = new ControllerFactory();
+                IControllerFactory controllerFactory = new ControllerFactory();
                 var controller = controllerFactory.CreateController(request);
                 var actionInvoker = new ActionInvoker();
                 var actionResult = actionInvoker.InvokeAction(controller, request.Action);

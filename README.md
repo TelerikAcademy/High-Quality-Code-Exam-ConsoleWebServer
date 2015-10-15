@@ -1,5 +1,8 @@
 ###Design pattern: Factory Method
-* 
+Required 1 but implemented 3:
+* `HandlerFactory` implements `CreateAndAttachHandlers` method from `IHandlerFactory` and is used for constructing and attaching handlers.
+* `ControllerFactory` implements `CreateController` method from `IControllerFactory` and is used for constructing controller objects by given request.
+* `ResponseProvider` implements `GetResponse` method from `IResponseProvider` and is used for constructing responses by given request as string.
 
 ###Design pattern: Strategy
 * 
@@ -14,7 +17,7 @@
 More info: https://github.com/NikolayIT/High-Quality-Code-Exam-ConsoleWebServer/commit/a755175825e2bb1378c8fe90a3efbbfc61e879a8
 
 ###Design pattern: Decorator
-* The abstract `ActionResultDecorator` class implements `IActionResult` and has a field `actionResult` of type `IActionResult`. The classes `ActionResultWithCorsDecorator` and `ActionResultWithNoCachingDecorator` (the concrete decorators) "decorates" IActionResult, adding additional functionality (headers).
+* The abstract `ActionResultDecorator` class implements `IActionResult` and has a field `actionResult` of type `IActionResult`. The classes `ActionResultWithCorsDecorator` and `ActionResultWithNoCachingDecorator` (the concrete decorators) "decorates" `IActionResult`, adding additional functionality (headers).
 
 More info: https://github.com/NikolayIT/High-Quality-Code-Exam-ConsoleWebServer/commit/745394da9f032185117cb2fa0d8feb48be30edce
 

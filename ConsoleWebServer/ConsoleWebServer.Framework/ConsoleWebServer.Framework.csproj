@@ -55,6 +55,7 @@
     <Compile Include="Handlers\Handler.cs" />
     <Compile Include="Handlers\HandlerFactory.cs" />
     <Compile Include="Handlers\HeadHandler.cs" />
+    <Compile Include="Handlers\IControllerFactory.cs" />
     <Compile Include="Handlers\IHandlerFactory.cs" />
     <Compile Include="Handlers\OptionsHandler.cs" />
     <Compile Include="Handlers\StaticFileHandler.cs" />

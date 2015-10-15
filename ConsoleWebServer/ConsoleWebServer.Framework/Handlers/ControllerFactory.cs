@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Reflection;
 
-    public class ControllerFactory
+    public class ControllerFactory : IControllerFactory
     {
         public Controller CreateController(HttpRequest request)
         {
