@@ -8,7 +8,7 @@
 
     public class ApiController : Controller
     {
-        public ApiController(HttpRequest request)
+        public ApiController(IHttpRequest request)
             : base(request)
         {
         }

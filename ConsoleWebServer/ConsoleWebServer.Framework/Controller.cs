@@ -4,12 +4,12 @@
 
     public abstract class Controller
     {
-        protected Controller(HttpRequest request)
+        protected Controller(IHttpRequest request)
         {
             this.Request = request;
         }
 
-        public HttpRequest Request { get; private set; }
+        public IHttpRequest Request { get; private set; }
 
         protected IActionResult Content(object model)
         {

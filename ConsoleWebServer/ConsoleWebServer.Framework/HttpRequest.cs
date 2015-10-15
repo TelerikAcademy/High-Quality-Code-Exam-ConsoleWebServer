@@ -2,7 +2,7 @@
 {
     using System.Text;
 
-    public class HttpRequest : HttpMessage
+    public class HttpRequest : HttpMessage, IHttpRequest
     {
         public HttpRequest(string method, string uri, string httpVersion)
             : base(httpVersion)

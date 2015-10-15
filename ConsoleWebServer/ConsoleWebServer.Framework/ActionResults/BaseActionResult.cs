@@ -5,13 +5,13 @@
 
     public abstract class BaseActionResult : IActionResult
     {
-        protected BaseActionResult(HttpRequest request)
+        protected BaseActionResult(IHttpRequest request)
         {
             this.Request = request;
             this.ResponseHeaders = new List<KeyValuePair<string, string>>();
         }
 
-        public HttpRequest Request { get; private set; }
+        public IHttpRequest Request { get; private set; }
 
         protected List<KeyValuePair<string, string>> ResponseHeaders { get; private set; }
 

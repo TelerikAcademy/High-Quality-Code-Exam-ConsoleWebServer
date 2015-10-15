@@ -5,7 +5,7 @@
 
     public class HomeController : Controller
     {
-        public HomeController(HttpRequest request)
+        public HomeController(IHttpRequest request)
             : base(request)
         {
         }

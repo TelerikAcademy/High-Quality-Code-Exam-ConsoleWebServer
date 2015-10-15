@@ -64,6 +64,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="HttpResponse.cs" />
     <Compile Include="ActionResults\IActionResult.cs" />
+    <Compile Include="IHttpRequest.cs" />
     <Compile Include="IResponseProvider.cs" />
     <Compile Include="ParserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
