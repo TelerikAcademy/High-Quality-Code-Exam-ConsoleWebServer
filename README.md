@@ -1,3 +1,7 @@
+# High Quality Code Exam 2015 - ConsoleWebServer
+
+## Refactoring documentation:
+
 ###Design pattern: Factory Method
 Required 1 but implemented 3:
 * `HandlerFactory` implements `CreateAndAttachHandlers` method from `IHandlerFactory` and is used for constructing and attaching handlers.
@@ -38,17 +42,27 @@ More info about the introduced bugs: https://github.com/NikolayIT/High-Quality-C
 More info about the bottleneck: https://github.com/NikolayIT/High-Quality-Code-Exam-ConsoleWebServer/commit/a26aab61abab219f68e7b728d0f7891764f4597a
 
 ###Single responsibility principle
-* 
+* `HttpRequest` and `RequestParser` are now two separate classes serving single responsibilities.
 
 ###Open/closed principle
-* 
+Clients can easily extend the framework by:
+* Implementing and using custom `ActionResultDecorator`
+* Implementing custom `IHandlerFactory` and pass it to the `ResponseProvider`
+* Implementing and attaching custom `Handler`
+* Adding additional controller
+* Returning custom `IActionResult` in controller methods
+* Implementing custom `IResponseProvider` and pass it to the `WebServerConsole`
+* And more other extensibility points in which user can add functionality without touching the original framework code
 
 ###Liskov substitution principle
-* 
+* All inheritants can replace their base classes in the code without breaking existing functionality and all classes are interchangable.
 
 ###Interface segregation principle
-* 
+* All interfaces in the code (`IActionResult`, `IControllerFactory`, `IHandlerFactory`, `IHttpRequest`, `IResponseProvider`) are small and well-defined.
 
 ###Dependency inversion principle
 * The `WebServerConsole` is receiving its dependency to `IResponseProvider` strategy as a parameter in its constructor instead of creating it on its own using the `new` keyword
 * The `ResponseProvider` class is receiving its dependecy to `IHandlerFactory` as a parameter in its constructor instead of creating it on its own using the `new` keyword
+
+###*bonus*  New features
+New features can be found here: https://github.com/NikolayIT/High-Quality-Code-Exam-ConsoleWebServer/commit/5b430dc30698aa50b3b544e36e6350576359e2eb
