@@ -4,7 +4,7 @@
 
     public abstract class Handler
     {
-        protected Handler Successor { get; private set; }
+        private Handler Successor { get; set; }
 
         public void SetSuccessor(Handler successor)
         {
