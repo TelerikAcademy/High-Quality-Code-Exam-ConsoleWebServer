@@ -16,7 +16,7 @@ namespace ConsoleWebServer.Framework
 
         public HttpResponse GetResponse(string requestAsString)
         {
-            HttpRequest request;
+            IHttpRequest request;
             try
             {
                 var requestParser = new RequestParser();

@@ -9,7 +9,7 @@
             this.Request = request;
         }
 
-        public IHttpRequest Request { get; private set; }
+        protected IHttpRequest Request { get; private set; }
 
         protected IActionResult Content(object model)
         {

@@ -4,12 +4,12 @@ namespace ConsoleWebServer.Framework.Handlers
 
     public class HeadHandler : Handler
     {
-        protected override bool CanHandle(HttpRequest request)
+        protected override bool CanHandle(IHttpRequest request)
         {
             return request.Method.ToLower() == "head";
         }
 
-        protected override HttpResponse Handle(HttpRequest request)
+        protected override HttpResponse Handle(IHttpRequest request)
         {
             var response = new HttpResponse(request.ProtocolVersion, HttpStatusCode.OK, string.Empty);
             return response;

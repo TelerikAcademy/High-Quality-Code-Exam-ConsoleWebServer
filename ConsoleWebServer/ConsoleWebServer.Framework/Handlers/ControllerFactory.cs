@@ -6,7 +6,7 @@
 
     public class ControllerFactory : IControllerFactory
     {
-        public Controller CreateController(HttpRequest request)
+        public Controller CreateController(IHttpRequest request)
         {
             var controllerClassName = request.Action.ControllerName + "Controller";
             var type =

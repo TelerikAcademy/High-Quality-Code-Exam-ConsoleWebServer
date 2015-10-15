@@ -24,11 +24,11 @@
             this.AddHeader("Content-Type", contentType);
         }
 
-        public HttpStatusCode StatusCode { get; private set; }
-
         public string Body { get; private set; }
 
-        public string StatusCodeAsString
+        private HttpStatusCode StatusCode { get; set; }
+
+        private string StatusCodeAsString
         {
             get
             {

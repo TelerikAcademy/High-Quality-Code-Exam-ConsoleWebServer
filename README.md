@@ -5,11 +5,15 @@ Required 1 but implemented 3:
 * `ResponseProvider` implements `GetResponse` method from `IResponseProvider` and is used for constructing responses by given request as string.
 
 ###Design pattern: Strategy
-* 
+Required 1 but implemented at least 2:
+* The `WebServerConsole` is receiving its dependency to `IResponseProvider` strategy as a parameter in its constructor instead of creating it on its own using the `new` keyword
+* The `ResponseProvider` class is receiving its dependecy to `IHandlerFactory` as a parameter in its constructor instead of creating it on its own using the `new` keyword
 
 ###Design pattern: Template Method
-* 
-* 
+Required 2 but implemented 3:
+* Some of the functionality of the `GetResponse` method is implemented in `BaseActionResult` and other is leaved to the "hooking" methods (called `GetStatusCode`, `GetContent` and `GetContentType`) in class inheritants (such as `ContentActionResult`, `JsonActionResult` and `RedirectActionResult`)
+* Some of the functionality of the `HandleRequest` method is implemented in `Handler` and other is leaved to the "hooking" methods (called `CanHandle` and `Handle`) in class inheritants (such as `ControllerHandler`, `StaticFileHandler`, etc.)
+* Some of the functionality of the `GetResponse` method is implemented in `ActionResultDecorator` and other is leaved to the "hooking" method called `UpdateResponse` in class inheritants (`ActionResultWithCorsDecorator` and `ActionResultWithNoCachingDecorator`)
 
 ###Design pattern: Chain of Responsibility
 * The abstract class `Handler` have `HandleRequest` method which accepts `HttpRequest` and returns `HttpResponse` and also have `SetSuccessor(Handler successor)` method to receive the next element of the chain. All implementations of the `Handler` class (`ControllerHandler`, `HeadHandler`, `OptionsHandler` and `StaticFileHandler`) are chained in the `HandlerFactory` class using the `SetSuccessor` method.
@@ -46,4 +50,5 @@ More info about the bottleneck: https://github.com/NikolayIT/High-Quality-Code-E
 * 
 
 ###Dependency inversion principle
-* 
+* The `WebServerConsole` is receiving its dependency to `IResponseProvider` strategy as a parameter in its constructor instead of creating it on its own using the `new` keyword
+* The `ResponseProvider` class is receiving its dependecy to `IHandlerFactory` as a parameter in its constructor instead of creating it on its own using the `new` keyword

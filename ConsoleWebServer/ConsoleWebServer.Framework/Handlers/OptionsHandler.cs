@@ -8,12 +8,12 @@
 
     public class OptionsHandler : Handler
     {
-        protected override bool CanHandle(HttpRequest request)
+        protected override bool CanHandle(IHttpRequest request)
         {
             return request.Method.ToLower() == "options";
         }
 
-        protected override HttpResponse Handle(HttpRequest request)
+        protected override HttpResponse Handle(IHttpRequest request)
         {
             var routes =
                 Assembly.GetEntryAssembly()

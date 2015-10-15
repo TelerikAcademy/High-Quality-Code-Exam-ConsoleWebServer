@@ -6,13 +6,13 @@
 
     public class StaticFileHandler : Handler
     {
-        protected override bool CanHandle(HttpRequest request)
+        protected override bool CanHandle(IHttpRequest request)
         {
             return request.Uri.LastIndexOf(".", StringComparison.Ordinal)
                    > request.Uri.LastIndexOf("/", StringComparison.Ordinal);
         }
 
-        protected override HttpResponse Handle(HttpRequest request)
+        protected override HttpResponse Handle(IHttpRequest request)
         {
             var filePath = Environment.CurrentDirectory + "/" + request.Uri;
             if (!File.Exists(filePath))

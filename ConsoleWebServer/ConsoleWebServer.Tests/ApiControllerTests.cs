@@ -14,7 +14,7 @@
         public void ReturnMeActionReturnsParameterInTheJsonObject()
         {
             const string Parameter = "someParam123";
-            var request = new Mock<HttpRequest>("GET", "/", "1.1");
+            var request = new Mock<IHttpRequest>("GET", "/", "1.1");
             var actionResult = new ApiController(request.Object);
             var resultBody = actionResult.ReturnMe(Parameter).GetResponse().Body;
             Assert.AreEqual(string.Format("{{\"param\":\"{0}\"}}", Parameter), resultBody);

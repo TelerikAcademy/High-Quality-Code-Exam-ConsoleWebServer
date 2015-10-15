@@ -11,7 +11,7 @@
             this.Successor = successor;
         }
 
-        public HttpResponse HandleRequest(HttpRequest request)
+        public HttpResponse HandleRequest(IHttpRequest request)
         {
             if (this.CanHandle(request))
             {
@@ -26,8 +26,8 @@
             return new HttpResponse(request.ProtocolVersion, HttpStatusCode.NotImplemented, "Request cannot be handled.");
         }
 
-        protected abstract bool CanHandle(HttpRequest request);
+        protected abstract bool CanHandle(IHttpRequest request);
 
-        protected abstract HttpResponse Handle(HttpRequest request);
+        protected abstract HttpResponse Handle(IHttpRequest request);
     }
 }

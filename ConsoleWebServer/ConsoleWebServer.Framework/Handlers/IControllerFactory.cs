@@ -2,6 +2,6 @@
 {
     public interface IControllerFactory
     {
-        Controller CreateController(HttpRequest request);
+        Controller CreateController(IHttpRequest request);
     }
 }

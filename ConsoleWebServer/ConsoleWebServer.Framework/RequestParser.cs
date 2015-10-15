@@ -4,7 +4,7 @@
 
     public class RequestParser
     {
-        public HttpRequest Parse(string requestAsString)
+        public IHttpRequest Parse(string requestAsString)
         {
             var textReader = new StringReader(requestAsString);
             var firstLine = textReader.ReadLine();
@@ -19,7 +19,7 @@
             return requestObject;
         }
 
-        private HttpRequest CreateRequest(string firstRequestLine)
+        private IHttpRequest CreateRequest(string firstRequestLine)
         {
             var firstRequestLineParts = firstRequestLine.Split(' ');
             if (firstRequestLineParts.Length != 3)
@@ -36,7 +36,7 @@
             return requestObject;
         }
 
-        private void AddHeaderToRequest(HttpRequest request, string headerLine)
+        private void AddHeaderToRequest(IHttpRequest request, string headerLine)
         {
             var headerParts = headerLine.Split(new[] { ':' }, 2);
             var headerName = headerParts[0].Trim();

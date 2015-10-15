@@ -14,9 +14,9 @@
             this.Headers = new SortedDictionary<string, ICollection<string>>();
         }
 
-        public Version ProtocolVersion { get; protected set; }
+        public Version ProtocolVersion { get; private set; }
 
-        public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+        public IDictionary<string, ICollection<string>> Headers { get; private set; }
 
         public void AddHeader(string name, string value)
         {

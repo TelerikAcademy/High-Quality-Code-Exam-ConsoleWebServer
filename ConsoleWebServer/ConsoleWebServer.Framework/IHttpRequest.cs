@@ -14,5 +14,7 @@
         Version ProtocolVersion { get; }
 
         IDictionary<string, ICollection<string>> Headers { get; }
+
+        void AddHeader(string name, string value);
     }
 }

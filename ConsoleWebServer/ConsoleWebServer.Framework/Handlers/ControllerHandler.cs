@@ -5,12 +5,12 @@
 
     public class ControllerHandler : Handler
     {
-        protected override bool CanHandle(HttpRequest request)
+        protected override bool CanHandle(IHttpRequest request)
         {
             return request.ProtocolVersion.Major < 3;
         }
 
-        protected override HttpResponse Handle(HttpRequest request)
+        protected override HttpResponse Handle(IHttpRequest request)
         {
             HttpResponse response;
             try

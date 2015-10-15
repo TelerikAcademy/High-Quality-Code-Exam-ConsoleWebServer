@@ -11,9 +11,9 @@
             this.ResponseHeaders = new List<KeyValuePair<string, string>>();
         }
 
-        public IHttpRequest Request { get; private set; }
-
         protected List<KeyValuePair<string, string>> ResponseHeaders { get; private set; }
+
+        private IHttpRequest Request { get; set; }
 
         public HttpResponse GetResponse()
         {
