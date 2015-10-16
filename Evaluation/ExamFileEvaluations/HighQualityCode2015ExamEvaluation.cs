@@ -84,7 +84,112 @@
                         new Option("Не", 0),
                     }),
 
-                new Criteria("Unit Testing (13)", string.Empty, new List<Option>()),
+                new Criteria("Unit Testing (13)", "https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/tree/CleanCode/ConsoleWebServer/ConsoleWebServer.Tests", new List<Option>()),
+                new Criteria(
+                    "ActionDescriptor.ctor() - тест проверяващ, че адресът се парсва успешно",
+                    "Например new ActionDescriptor(\"/test/method/inputdata\"); и Assert за контролера, action-а и параметъра",
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ActionDescriptor.ctor() - тест проверяващ с null или string.Empty параметър",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ActionDescriptor.ctor() - тест проверяващ default стойностите на контролера",
+                    "Например new ActionDescriptor(\"/\")",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ActionDescriptor.ctor() - тест проверяващ default стойностите на action-а",
+                    "Например new ActionDescriptor(\"/test\")",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ActionDescriptor.ctor() - тест проверяващ default стойностите на параметъра",
+                    "Например new ActionDescriptor(\"/test/method\");",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ActionDescriptor.ctor() - има 100% Code Coverage",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.ReturnMe() - тест проверяващ, че се връща валиден резултат от метода",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.ReturnMe() - има 100% Code Coverage",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.GetDateWithCors() - тест проверяващ, че се връща правилна стойност при валиден хедър",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 2.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.GetDateWithCors() - тест проверяващ, че се хвърля exception при различен Referer от параметъра",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.GetDateWithCors() - тест проверяващ, че се хвърля exception при невалиден (празен или липсващ) хедър",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "ApiController.GetDateWithCors() - има 100% Code Coverage",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Използван е mocking с Moq в тестовете",
+                    "Например за мокване на HttpHandler или IHttpHandler или нещо друго",
+                    new List<Option>
+                    {
+                        new Option("Да, за поне 2 теста", 1),
+                        new Option("Да, в 1 тест", 0.5m),
+                        new Option("Не", 0),
+                    }),
 
                 new Criteria("Code Documentation (4)", string.Empty, new List<Option>()),
                 new Criteria(
@@ -189,39 +294,44 @@
                     }),
 
                 new Criteria("New Features (11)", string.Empty, new List<Option>()),
-                new Criteria("Имплементиран ли е HEAD handler, който да работи преди останалите условия за обработка на завката",
-                    "",
+                new Criteria(
+                    "Имплементиран ли е HEAD handler, който да работи преди останалите условия за обработка на завката",
+                    string.Empty,
                     new List<Option>
                     {
                         new Option("Да", 3),
                         new Option("Частично", 1.5m),
                         new Option("Не", 0),
                     }),
-                new Criteria("Имплементиран ли е RedirectActionResult клас, който да връща '302 Redirect' с Location header?",
-                    "",
+                new Criteria(
+                    "Имплементиран ли е RedirectActionResult клас, който да връща '302 Redirect' с Location header?",
+                    string.Empty,
                     new List<Option>
                     {
                         new Option("Да", 2),
                         new Option("Частично", 1m),
                         new Option("Не", 0),
                     }),
-                new Criteria("Комбиниран ли е или може ли да се комбинира RedirectActionResult с CORS и no caching функционалностите?",
-                    "",
+                new Criteria(
+                    "Комбиниран ли е или може ли да се комбинира RedirectActionResult с CORS и no caching функционалностите?",
+                    string.Empty,
                     new List<Option>
                     {
                         new Option("Да", 1),
                         new Option("Частично", 0.5m),
                         new Option("Не", 0),
                     }),
-                new Criteria("Добавен ли е Redirect метод в класа Controller, който да връща нов RedirectActionResult?",
-                    "",
+                new Criteria(
+                    "Добавен ли е Redirect метод в класа Controller, който да връща нов RedirectActionResult?",
+                    string.Empty,
                     new List<Option>
                     {
                         new Option("Да", 1),
                         new Option("Не", 0),
                     }),
-                new Criteria("Добавен ли е Forum метод в класа HomeController, който да вика Redirect с адреса към форума?",
-                    "",
+                new Criteria(
+                    "Добавен ли е Forum метод в класа HomeController, който да вика Redirect с адреса към форума?",
+                    string.Empty,
                     new List<Option>
                     {
                         new Option("Да", 1),
