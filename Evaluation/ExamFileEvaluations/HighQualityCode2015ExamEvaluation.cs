@@ -364,7 +364,7 @@
                         new Option("Не", 0),
                     }),
 
-                new Criteria("Bug Fixing (11)", "https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/commit/5d7d49cd82624b89e1baaad6818177ca32b642e5", new List<Option>()),
+                new Criteria("Bug Fixing (11 или 12)", "https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/commit/5d7d49cd82624b89e1baaad6818177ca32b642e5", new List<Option>()),
                 new Criteria(
                     "Добавена е липсващaта ! при изписването на 'File not found'",
                     string.Empty,
@@ -379,8 +379,8 @@
                     "'request.ProtocolVersion.Major <= 3' е заменено с 'request.ProtocolVersion.Major < 3'",
                     new List<Option>
                     {
-                        new Option("Оправен и описан", 3),
-                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
+                        new Option("Оправен и описан", 2.5m),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.25m),
                         new Option("Неописан и неоправен (ненамерен)", 0),
                     }),
                 new Criteria(
@@ -388,8 +388,8 @@
                     "Кодът трябва да е нещо като: this.Parameter = uriParts.Length > 2 ? uriParts[2] : string.Empty;",
                     new List<Option>
                     {
-                        new Option("Оправен и описан", 3),
-                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
+                        new Option("Оправен и описан", 2.5m),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.25m),
                         new Option("Неописан и неоправен (ненамерен)", 0),
                     }),
                 new Criteria(
@@ -397,7 +397,7 @@
                     "Датата и Content-Length-а не ги отчитаме за разлика. Липсата на '/Home/Forum/' също.",
                     new List<Option>
                     {
-                        new Option("Да", 1.5m),
+                        new Option("Да", 2),
                         new Option("Не", 0),
                     }),
                 new Criteria(
@@ -405,27 +405,35 @@
                     "Датата и Content-Length-а не ги отчитаме за разлика. Липсата на '/Home/Forum/' също.",
                     new List<Option>
                     {
-                        new Option("Да", 1.5m),
+                        new Option("Да", 2),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Bonus: Премахнато е throw new Exception() от конструктора на JsonActionResultWithoutCaching",
+                    "Където и да е преместена логиката за JsonActionResultWithoutCaching (например в декоратора) не трябва да се хвърля ексепшън",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
                         new Option("Не", 0),
                     }),
 
-                new Criteria("Performance Bottleneck (4)", string.Empty, new List<Option>()),
+                new Criteria("Performance Bottleneck (4 или 6)", string.Empty, new List<Option>()),
                 new Criteria(
                     "Търсенето за съществуване на файл в StaticFileHandler е подобрено",
                     "Като е заменен бавния рекурсивния метод FileExists с бързия вграден File.Exists",
                     new List<Option>
                     {
-                        new Option("Оправен и описан", 3),
-                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
+                        new Option("Оправен и описан", 4),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 2),
                         new Option("Неописан и неоправен (ненамерен)", 0),
                     }),
                 new Criteria(
-                    "Излишните извиквания на '.ToList().AsEnumerable().AsQueryable().ToArray()' са махнати",
+                    "Bonus: Излишните извиквания на '.ToList().AsEnumerable().AsQueryable().ToArray()' са махнати",
                     "В класа ActionDescriptor",
                     new List<Option>
                     {
-                        new Option("Оправен", 1),
-                        new Option("Неоправен", 0),
+                        new Option("Да", 2),
+                        new Option("Не", 0),
                     }),
 
                 new Criteria("New Features (11)", string.Empty, new List<Option>()),
