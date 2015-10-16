@@ -9,6 +9,141 @@
             return new List<Criteria>
             {
                 new Criteria("Refactoring (18)", string.Empty, new List<Option>()),
+                new Criteria(
+                    "Кодът се компилира успешно",
+                    "Компилационните грешки са оправени",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Кодът се компилира без предупреждения (warnings)",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Всички файлове се намират в подходящо именуван namespace",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 2),
+                        new Option("Повечето", 1.5m),
+                        new Option("Някои", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "По-добро наименование на класове, променливи, полета, пропъртита, методи и параметри",
+                    "Всяко име дава ясна представа за предназначението (не са 'r', 'PR', 'm' и т.н.)",
+                    new List<Option>
+                    {
+                        new Option("Да", 3),
+                        new Option("На повечето места", 2),
+                        new Option("На някои места", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Класа HttpNotFound е преименуван на HttpNotFoundException",
+                    "Спазвайки конвенцията за именуване на exceptions",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Изнесени са необходимите константи",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 2),
+                        new Option("Частично", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "\"text/plain; charset=utf-8\" е изнесено като константа",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Премахната е излишната константа \"ClassName = \"HttpNotFoundException\"\"",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Премахнат е Middle man от кода",
+                    "Например NewActionInvoker класа, който извиква ActionInvoker.InvokeAction",
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Премахнат е дългият несвързан коментар в ActionInvoker",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Излишните парчета код са премахнати",
+                    "Например файла var.cs, излишните usings в HttpResponse, класа HighQualityCodeExamPointsProvider и т.н.",
+                    new List<Option>
+                    {
+                        new Option("Да", 2m),
+                        new Option("Повечето", 1.5m),
+                        new Option("Някои", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Divergent change - HttpRequest данните са разделени от логиката за парсване",
+                    "Двете вече са в отделни класове (например данните в HttpRequest и трите метода за парсване в RequestParser)",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Логиката по обработката на заявките (ResponseProvider.Process) е отделена",
+                    "Логиката за заявките (OPTIONS, HEAD, files, controllers) е изкарана в отделни самостоятелни методи или отделни класове",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Класа ParserException е изкаран извън HttpNotFound",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Метода GetContentType в HighQualityCodeExamPointsProvider е преместен в JsonActionResult",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Да", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Code duplicate - изкаран е базов клас за повтарящата се логика в HttpRequest и HttpResponse класовете",
+                    "Например базов клас HttpMesssage, който съдържа AddHeader и повтарящата се логика в ToString", 
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
 
                 new Criteria("StyleCop (9)", string.Empty, new List<Option>()),
                 new Criteria(
