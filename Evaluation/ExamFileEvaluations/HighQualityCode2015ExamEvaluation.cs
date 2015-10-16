@@ -1,8 +1,9 @@
 ﻿namespace ExamFileEvaluations
 {
     using System.Collections.Generic;
+    using Telerik.ILS.Services.Courses.PracticalExams.CriteriaImporter;
 
-    public class HighQualityCode2015ExamEvaluation
+    public static class HighQualityCode2015ExamEvaluation
     {
         public static List<Criteria> GetCriteria()
         {

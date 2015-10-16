@@ -1,4 +1,4 @@
-﻿namespace ExamFileEvaluations
+﻿namespace Telerik.ILS.Services.Courses.PracticalExams.CriteriaImporter
 {
     public class Option
     {

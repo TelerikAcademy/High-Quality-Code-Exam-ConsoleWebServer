@@ -1,4 +1,4 @@
-﻿namespace ExamFileEvaluations
+﻿namespace Telerik.ILS.Services.Courses.PracticalExams.CriteriaImporter
 {
     using System.Collections.Generic;
 
