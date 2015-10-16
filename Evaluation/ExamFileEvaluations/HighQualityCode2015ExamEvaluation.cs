@@ -31,7 +31,8 @@
                 new Criteria("Design Patterns (22)", "Примери: https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/blob/CleanCode/README.md", new List<Option>()),
                 new Criteria(
                     "Използван е Factory Method",
-                    "Например клас, който създава някакви обекти и имплементира интерфейс.", new List<Option>
+                    "Например клас, който създава някакви обекти и имплементира интерфейс.",
+                    new List<Option>
                     {
                         new Option("Да", 2),
                         new Option("Частично", 1),
@@ -39,7 +40,8 @@
                     }),
                 new Criteria(
                     "Използван е Strategy",
-                    "Например, където се подава интерфейс, вместо конкретен клас някъде, за да се свърши някаква работа", new List<Option>
+                    "Например, където се подава интерфейс, вместо конкретен клас някъде, за да се свърши някаква работа",
+                    new List<Option>
                     {
                         new Option("Да", 3),
                         new Option("Частично", 1.5m),
@@ -47,7 +49,8 @@
                     }),
                 new Criteria(
                     "Използван е Template Method поне веднъж",
-                    "Например, където част от работата е оставена на наследниците (имплементиран virtual или abstract метод)", new List<Option>
+                    "Например, където част от работата е оставена на наследниците (имплементиран virtual или abstract метод)",
+                    new List<Option>
                     {
                         new Option("Да", 3),
                         new Option("Частично", 1.5m),
@@ -55,7 +58,8 @@
                     }),
                 new Criteria(
                     "Използван е Template Method втори път",
-                    "Например, където част от работата е оставена на наследниците (имплементиран virtual или abstract метод)", new List<Option>
+                    "Например, където част от работата е оставена на наследниците (имплементиран virtual или abstract метод)",
+                    new List<Option>
                     {
                         new Option("Да", 3),
                         new Option("Частично", 1.5m),
@@ -63,7 +67,8 @@
                     }),
                 new Criteria(
                     "Използван е Chain of Responsibility",
-                    "Например за веригата от условия при обработването на заявките (HEAD->OPTIONS->files->controller)", new List<Option>
+                    "Например за веригата от условия при обработването на заявките (HEAD->OPTIONS->files->controller)",
+                    new List<Option>
                     {
                         new Option("Да", 5),
                         new Option("Частично", 2.5m),
@@ -81,14 +86,154 @@
                 new Criteria("Unit Testing (13)", string.Empty, new List<Option>()),
 
                 new Criteria("Code Documentation (4)", string.Empty, new List<Option>()),
+                new Criteria(
+                     "Документиран ли е IActionResult интерфейса",
+                    "Без правописни грешки, с ясен текст и добър английски език",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Да, но може и по-добре", 0.5m),
+                        new Option("Не (0)", 0),
+                    }),
+                new Criteria(
+                    "Документиран ли е методът IActionResult.GetResponse()",
+                    "Без правописни грешки, с ясен текст и добър английски език",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Да, но може и по-добре", 0.5m),
+                        new Option("Не (0)", 0),
+                    }),
+                new Criteria(
+                     "Документиран ли е IResponseProvider интерфейса",
+                    "Без правописни грешки, с ясен текст и добър английски език",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Да, но може и по-добре", 0.5m),
+                        new Option("Не (0)", 0),
+                    }),
+                new Criteria(
+                    "Документиран ли е методът IResponseProvider.GetResponse()",
+                    "Без правописни грешки, с ясен текст и добър английски език",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Да, но може и по-добре", 0.5m),
+                        new Option("Не (0)", 0),
+                    }),
 
-                new Criteria("Bug Fixing (11)", string.Empty, new List<Option>()),
+                new Criteria("Bug Fixing (11)", "https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/commit/5d7d49cd82624b89e1baaad6818177ca32b642e5", new List<Option>()),
+                new Criteria(
+                    "Добавена е липсващaта ! при изписването на 'File not found'",
+                    string.Empty,
+                    new List<Option>
+                    {
+                        new Option("Оправен и описан", 2),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1),
+                        new Option("Неописан и неоправен (ненамерен)", 0),
+                    }),
+                new Criteria(
+                    "При версия 3.0 на HTTP се връща 'Request cannot be handled' вместо 'Home page :)'",
+                    "'request.ProtocolVersion.Major <= 3' е заменено с 'request.ProtocolVersion.Major < 3'",
+                    new List<Option>
+                    {
+                        new Option("Оправен и описан", 3),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
+                        new Option("Неописан и неоправен (ненамерен)", 0),
+                    }),
+                new Criteria(
+                    "Когато параметърът не е подаден по условие, трябва default стойността да е празен низ, а не 'Param'",
+                    "Кодът трябва да е нещо като: this.Parameter = uriParts.Length > 2 ? uriParts[2] : string.Empty;",
+                    new List<Option>
+                    {
+                        new Option("Оправен и описан", 3),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
+                        new Option("Неописан и неоправен (ненамерен)", 0),
+                    }),
+                new Criteria(
+                    "Първият примерен тест изкарва очаквания резултат",
+                    "Датата и Content-Length-а не ги отчитаме за разлика. Липсата на '/Home/Forum/' също.",
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria(
+                    "Вторият примерен тест изкарва очаквания резултат",
+                    "Датата и Content-Length-а не ги отчитаме за разлика. Липсата на '/Home/Forum/' също.",
+                    new List<Option>
+                    {
+                        new Option("Да", 1.5m),
+                        new Option("Не", 0),
+                    }),
 
                 new Criteria("Performance Bottleneck (4)", string.Empty, new List<Option>()),
+                new Criteria(
+                    "Търсенето за съществуване на файл в StaticFileHandler е подобрено",
+                    "Като е заменен бавния рекурсивния метод FileExists с бързия вграден File.Exists",
+                    new List<Option>
+                    {
+                        new Option("Оправен и описан", 4),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 2),
+                        new Option("Неописан и неоправен (ненамерен)", 0),
+                    }),
 
                 new Criteria("New Features (11)", string.Empty, new List<Option>()),
+                new Criteria(
+                    "Третият примерен тест изкарва очаквания резултат",
+                    "Датата и Content-Length-а не ги отчитаме за грешка. Липсата на '/Home/Forum/' също.", new List<Option>
+                    {
+                        new Option("Да", 1), // 2?
+                        new Option("Не", 0),
+                    }),
 
                 new Criteria("SOLID (8)", string.Empty, new List<Option>()),
+                new Criteria(
+                    "Single Responsibility принцип",
+                    "Всеки клас има само една причина за промяна",
+                    new List<Option>
+                    {
+                        new Option("Добре приложен и описан", 1),
+                        new Option("Частично приложен / частично описан", 0.5m),
+                        new Option("Неописан и неприложен (липсващ)", 0),
+                    }),
+                new Criteria(
+                    "Open / Closed принцип",
+                    "Отворен за разширение, затворен за промяна",
+                    new List<Option>
+                    {
+                        new Option("Добре приложен и описан", 2),
+                        new Option("Частично приложен / частично описан", 1),
+                        new Option("Неописан и неприложен (липсващ)", 0),
+                    }),
+                new Criteria(
+                    "Liskov Substitution принцип",
+                    "Наследниците успешно заменят базовите си класове",
+                    new List<Option>
+                    {
+                        new Option("Добре приложен и описан", 2),
+                        new Option("Частично приложен / частично описан", 1),
+                        new Option("Неописан и неприложен (липсващ)", 0),
+                    }),
+                new Criteria(
+                    "Interface Segregation принцип",
+                    "Малки, точни и ясни интерфейси, дефиниращи едно единствено нещо",
+                    new List<Option>
+                    {
+                        new Option("Добре приложен и описан", 1),
+                        new Option("Частично приложен / частично описан", 0.5m),
+                        new Option("Неописан и неприложен (липсващ)", 0),
+                    }),
+                new Criteria(
+                    "Dependency Inversion принцип",
+                    "Това, от което класовете зависят, им се подава от класовете, които ги използват",
+                    new List<Option>
+                    {
+                        new Option("Добре приложен и описан", 2),
+                        new Option("Частично приложен / частично описан", 1),
+                        new Option("Неописан и неприложен (липсващ)", 0),
+                    }),
             };
         }
     }
