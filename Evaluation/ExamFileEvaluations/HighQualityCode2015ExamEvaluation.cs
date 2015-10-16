@@ -76,7 +76,8 @@
                     }),
                 new Criteria(
                     "Използван е Decorator",
-                    "Например за декориране на ActionResult с CORS и no caching функционалности", new List<Option>
+                    "Например за декориране на ActionResult с CORS и no caching функционалности",
+                    new List<Option>
                     {
                         new Option("Да", 6),
                         new Option("Частично", 3),
@@ -93,7 +94,7 @@
                     {
                         new Option("Да", 1),
                         new Option("Да, но може и по-добре", 0.5m),
-                        new Option("Не (0)", 0),
+                        new Option("Не", 0),
                     }),
                 new Criteria(
                     "Документиран ли е методът IActionResult.GetResponse()",
@@ -102,7 +103,7 @@
                     {
                         new Option("Да", 1),
                         new Option("Да, но може и по-добре", 0.5m),
-                        new Option("Не (0)", 0),
+                        new Option("Не", 0),
                     }),
                 new Criteria(
                      "Документиран ли е IResponseProvider интерфейса",
@@ -111,7 +112,7 @@
                     {
                         new Option("Да", 1),
                         new Option("Да, но може и по-добре", 0.5m),
-                        new Option("Не (0)", 0),
+                        new Option("Не", 0),
                     }),
                 new Criteria(
                     "Документиран ли е методът IResponseProvider.GetResponse()",
@@ -120,7 +121,7 @@
                     {
                         new Option("Да", 1),
                         new Option("Да, но може и по-добре", 0.5m),
-                        new Option("Не (0)", 0),
+                        new Option("Не", 0),
                     }),
 
                 new Criteria("Bug Fixing (11)", "https://github.com/TelerikAcademy/High-Quality-Code-Exam-ConsoleWebServer/commit/5d7d49cd82624b89e1baaad6818177ca32b642e5", new List<Option>()),
@@ -174,17 +175,26 @@
                     "Като е заменен бавния рекурсивния метод FileExists с бързия вграден File.Exists",
                     new List<Option>
                     {
-                        new Option("Оправен и описан", 4),
-                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 2),
+                        new Option("Оправен и описан", 3),
+                        new Option("Описан и неоправен, оправен и неописан или частично описан / оправен", 1.5m),
                         new Option("Неописан и неоправен (ненамерен)", 0),
+                    }),
+                new Criteria(
+                    "Излишните извиквания на '.ToList().AsEnumerable().AsQueryable().ToArray()' са махнати",
+                    "В класа ActionDescriptor",
+                    new List<Option>
+                    {
+                        new Option("Оправен", 1),
+                        new Option("Неоправен", 0),
                     }),
 
                 new Criteria("New Features (11)", string.Empty, new List<Option>()),
                 new Criteria(
                     "Третият примерен тест изкарва очаквания резултат",
-                    "Датата и Content-Length-а не ги отчитаме за грешка. Липсата на '/Home/Forum/' също.", new List<Option>
+                    "Датата и Content-Length-а не ги отчитаме за грешка. Липсата на '/Home/Forum/' също.",
+                    new List<Option>
                     {
-                        new Option("Да", 1), // 2?
+                        new Option("Да", 2),
                         new Option("Не", 0),
                     }),
 
