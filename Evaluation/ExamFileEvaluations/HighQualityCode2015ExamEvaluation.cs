@@ -189,12 +189,51 @@
                     }),
 
                 new Criteria("New Features (11)", string.Empty, new List<Option>()),
+                new Criteria("Имплементиран ли е HEAD handler, който да работи преди останалите условия за обработка на завката",
+                    "",
+                    new List<Option>
+                    {
+                        new Option("Да", 3),
+                        new Option("Частично", 1.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria("Имплементиран ли е RedirectActionResult клас, който да връща '302 Redirect' с Location header?",
+                    "",
+                    new List<Option>
+                    {
+                        new Option("Да", 2),
+                        new Option("Частично", 1m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria("Комбиниран ли е или може ли да се комбинира RedirectActionResult с CORS и no caching функционалностите?",
+                    "",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Частично", 0.5m),
+                        new Option("Не", 0),
+                    }),
+                new Criteria("Добавен ли е Redirect метод в класа Controller, който да връща нов RedirectActionResult?",
+                    "",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
+                new Criteria("Добавен ли е Forum метод в класа HomeController, който да вика Redirect с адреса към форума?",
+                    "",
+                    new List<Option>
+                    {
+                        new Option("Да", 1),
+                        new Option("Не", 0),
+                    }),
                 new Criteria(
                     "Третият примерен тест изкарва очаквания резултат",
                     "Датата и Content-Length-а не ги отчитаме за грешка. Липсата на '/Home/Forum/' също.",
                     new List<Option>
                     {
-                        new Option("Да", 2),
+                        new Option("Да", 3),
+                        new Option("Частично", 1.5m),
                         new Option("Не", 0),
                     }),
 
